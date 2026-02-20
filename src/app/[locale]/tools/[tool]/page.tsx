@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getToolById, getAllTools } from '@/config/tools';
-import { getToolContent, type Locale } from '@/config/tool-content';
+import { getToolContent } from '@/config/tool-content';
 import { ToolPage } from '@/components/tools/ToolPage';
 import { MergePDFTool } from '@/components/tools/merge';
 import { SplitPDFTool } from '@/components/tools/split';
@@ -100,9 +100,8 @@ import {
   generateWebPageSchema,
   generateBreadcrumbSchema
 } from '@/lib/seo/structured-data';
+import { locales, type Locale } from '@/lib/i18n/config';
 import type { Metadata } from 'next';
-
-const SUPPORTED_LOCALES: Locale[] = ['en', 'ja', 'ko', 'es', 'fr', 'de', 'zh', 'zh-TW', 'pt', 'ar', 'it'];
 
 interface ToolPageParams {
   params: Promise<{
@@ -117,7 +116,7 @@ interface ToolPageParams {
 export async function generateStaticParams() {
   const tools = getAllTools();
 
-  return SUPPORTED_LOCALES.flatMap(locale =>
+  return locales.flatMap(locale =>
     tools.map(tool => ({
       locale,
       tool: tool.slug,

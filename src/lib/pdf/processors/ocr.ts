@@ -18,7 +18,7 @@ import { loadPdfjs, loadPdfLib } from '../loader';
 /**
  * Supported OCR languages
  */
-export type OCRLanguage = 'eng' | 'chi_sim' | 'chi_tra' | 'jpn' | 'kor' | 'spa' | 'fra' | 'deu' | 'por' | 'ara';
+export type OCRLanguage = 'eng' | 'chi_sim' | 'chi_tra' | 'jpn' | 'kor' | 'spa' | 'fra' | 'deu' | 'por' | 'ara' | 'tur';
 
 /**
  * OCR options
@@ -41,7 +41,7 @@ export interface OCROptions {
  */
 const DEFAULT_OPTIONS: OCROptions = {
   languages: ['eng'],
-  scale: 2,
+  scale: 3, // Increased for better accuracy
   pages: [],
   outputFormat: 'text',
   preserveLayout: false,
@@ -61,6 +61,7 @@ export const OCR_LANGUAGE_NAMES: Record<OCRLanguage, string> = {
   deu: 'German',
   por: 'Portuguese',
   ara: 'Arabic',
+  tur: 'Turkish',
 };
 
 // Tesseract worker type
@@ -229,6 +230,11 @@ export class OCRProcessor extends BasePDFProcessor {
 
     const langString = languages.join('+');
     this.tesseractWorker = await Tesseract.createWorker(langString) as unknown as TesseractWorker;
+
+    // Optimize parameters for better accuracy
+    await (this.tesseractWorker as any).setParameters({
+      tessedit_pageseg_mode: Tesseract.PSM.AUTO,
+    });
   }
 
   /**

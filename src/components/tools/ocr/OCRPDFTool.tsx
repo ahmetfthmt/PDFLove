@@ -31,7 +31,7 @@ export interface OCRPDFToolProps {
 export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
   const t = useTranslations('common');
   const tTools = useTranslations('tools');
-  
+
   // State
   const [file, setFile] = useState<UploadedFile | null>(null);
   const [status, setStatus] = useState<ProcessingStatus>('idle');
@@ -40,13 +40,13 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
   const [result, setResult] = useState<Blob | null>(null);
   const [textPreview, setTextPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Options state
   const [languages, setLanguages] = useState<OCRLanguage[]>(['eng']);
   const [outputFormat, setOutputFormat] = useState<OCROptions['outputFormat']>('text');
   const [scale, setScale] = useState(2);
   const [pageRange, setPageRange] = useState('');
-  
+
   // Ref for cancellation
   const cancelledRef = useRef(false);
 
@@ -105,10 +105,10 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
    */
   const parsePageRange = (rangeStr: string): number[] => {
     if (!rangeStr.trim()) return [];
-    
+
     const pages: number[] = [];
     const parts = rangeStr.split(',');
-    
+
     for (const part of parts) {
       const trimmed = part.trim();
       if (trimmed.includes('-')) {
@@ -125,7 +125,7 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
         }
       }
     }
-    
+
     return pages.sort((a, b) => a - b);
   };
 
@@ -172,13 +172,13 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
       if (output.success && output.result) {
         const blob = output.result as Blob;
         setResult(blob);
-        
+
         // Read text for preview if text output
         if (outputFormat === 'text') {
           const text = await blob.text();
           setTextPreview(text.length > 5000 ? text.substring(0, 5000) + '\n...(truncated)' : text);
         }
-        
+
         setStatus('complete');
       } else {
         setError(output.error?.message || 'Failed to perform OCR on PDF.');
@@ -213,7 +213,7 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
   const isProcessing = status === 'processing' || status === 'uploading';
   const canProcess = file && !isProcessing;
 
-  const availableLanguages: OCRLanguage[] = ['eng', 'chi_sim', 'chi_tra', 'jpn', 'kor', 'spa', 'fra', 'deu', 'por', 'ara'];
+  const availableLanguages: OCRLanguage[] = ['eng', 'chi_sim', 'chi_tra', 'jpn', 'kor', 'spa', 'fra', 'deu', 'por', 'ara', 'tur'];
 
   return (
     <div className={`space-y-6 ${className}`.trim()}>
@@ -231,7 +231,7 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
 
       {/* Error Message */}
       {error && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-red-50 border border-red-200 text-red-700"
           role="alert"
         >
@@ -273,7 +273,7 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
           <h3 className="text-lg font-medium text-[hsl(var(--color-foreground))] mb-4">
             {tTools('ocrPdf.optionsTitle') || 'OCR Options'}
           </h3>
-          
+
           <div className="space-y-4">
             {/* Language Selection */}
             <div>
@@ -334,8 +334,9 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
                   className="w-full px-3 py-2 rounded-[var(--radius-md)] border border-[hsl(var(--color-border))] bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
                 >
                   <option value="1">{tTools('ocrPdf.qualityLow') || 'Low (Faster)'}</option>
-                  <option value="2">{tTools('ocrPdf.qualityMedium') || 'Medium (Recommended)'}</option>
-                  <option value="3">{tTools('ocrPdf.qualityHigh') || 'High (Slower)'}</option>
+                  <option value="2">{tTools('ocrPdf.qualityMedium') || 'Medium (Good)'}</option>
+                  <option value="3">{tTools('ocrPdf.qualityHigh') || 'High (Recommended)'}</option>
+                  <option value="4">{tTools('ocrPdf.qualityUltra') || 'Ultra (Best Accuracy)'}</option>
                 </select>
               </div>
 
@@ -381,8 +382,8 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
           disabled={!canProcess}
           loading={isProcessing}
         >
-          {isProcessing 
-            ? (t('status.processing') || 'Processing...') 
+          {isProcessing
+            ? (t('status.processing') || 'Processing...')
             : (tTools('ocrPdf.processButton') || 'Start OCR')
           }
         </Button>
@@ -412,7 +413,7 @@ export function OCRPDFTool({ className = '' }: OCRPDFToolProps) {
 
       {/* Success Message */}
       {status === 'complete' && result && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-green-50 border border-green-200 text-green-700"
           role="status"
         >

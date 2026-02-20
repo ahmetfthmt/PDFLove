@@ -1,13 +1,20 @@
 // PDFCraft Chrome Extension - Background Service Worker
 
-const PDFCRAFT_URL = 'https://pdfcraft.devtoolcafe.com/en';
+/**
+ * Get the base URL according to UI language
+ */
+function getBaseUrl() {
+    const uiLanguage = chrome.i18n.getUILanguage() || 'en';
+    const langCode = uiLanguage.startsWith('tr') ? 'tr' : 'en';
+    return `https://pdfcraft.devtoolcafe.com/${langCode}`;
+}
 
 // Create context menu when extension is installed
 chrome.runtime.onInstalled.addListener(() => {
     // Create main context menu item
     chrome.contextMenus.create({
         id: 'pdfcraft-open',
-        title: 'Open with PDFCraft',
+        title: chrome.i18n.getMessage('menuOpen'),
         contexts: ['link', 'page']
     });
 
@@ -15,28 +22,28 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: 'pdfcraft-merge',
         parentId: 'pdfcraft-open',
-        title: 'Merge PDFs',
+        title: chrome.i18n.getMessage('menuMerge'),
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
         id: 'pdfcraft-compress',
         parentId: 'pdfcraft-open',
-        title: 'Compress PDF',
+        title: chrome.i18n.getMessage('menuCompress'),
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
         id: 'pdfcraft-convert',
         parentId: 'pdfcraft-open',
-        title: 'Convert to PDF',
+        title: chrome.i18n.getMessage('menuConvert'),
         contexts: ['link', 'page']
     });
 
     chrome.contextMenus.create({
         id: 'pdfcraft-all-tools',
         parentId: 'pdfcraft-open',
-        title: 'All Tools →',
+        title: chrome.i18n.getMessage('menuAllTools'),
         contexts: ['link', 'page']
     });
 
@@ -45,24 +52,25 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Handle context menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    let url = PDFCRAFT_URL;
+    const baseUrl = getBaseUrl();
+    let url = baseUrl;
 
     switch (info.menuItemId) {
         case 'pdfcraft-merge':
-            url = `${PDFCRAFT_URL}/tools/merge-pdf`;
+            url = `${baseUrl}/tools/merge-pdf`;
             break;
         case 'pdfcraft-compress':
-            url = `${PDFCRAFT_URL}/tools/compress-pdf`;
+            url = `${baseUrl}/tools/compress-pdf`;
             break;
         case 'pdfcraft-convert':
-            url = `${PDFCRAFT_URL}/tools/jpg-to-pdf`;
+            url = `${baseUrl}/tools/jpg-to-pdf`;
             break;
         case 'pdfcraft-all-tools':
         case 'pdfcraft-open':
-            url = PDFCRAFT_URL;
+            url = baseUrl;
             break;
         default:
-            url = PDFCRAFT_URL;
+            url = baseUrl;
     }
 
     // Open PDFCraft in a new tab

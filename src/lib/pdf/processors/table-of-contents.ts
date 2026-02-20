@@ -59,22 +59,17 @@ export class TableOfContentsProcessor extends BasePDFProcessor {
         );
       }
 
-      const blobResult = (result as any).pdfBlob;
       const bytesResult = (result as any).pdfBytes;
 
-      let finalBlob: Blob;
-
-      if (blobResult instanceof Blob) {
-        finalBlob = blobResult;
-      } else if (bytesResult && bytesResult.byteLength > 0) {
-        finalBlob = new Blob([new Uint8Array(bytesResult)], { type: 'application/pdf' });
-      } else {
+      if (!bytesResult || bytesResult.byteLength === 0) {
         console.error('[TOC Processor] Critical: Received empty data from worker');
         return this.createErrorOutput(
           PDFErrorCode.PROCESSING_FAILED,
           'Internal Error: Generated PDF data was empty.'
         );
       }
+
+      const finalBlob = new Blob([new Uint8Array(bytesResult)], { type: 'application/pdf' });
 
       this.updateProgress(90, 'Saving PDF...');
       console.log('[TOC Processor] Final Blob size:', finalBlob.size);
@@ -101,8 +96,8 @@ export class TableOfContentsProcessor extends BasePDFProcessor {
     addBookmark: boolean
   ): Promise<{ status: 'success'; pdfBytes: ArrayBuffer } | { status: 'error'; message: string }> {
     return new Promise((resolve) => {
-      // Use V2 worker to bypass cache and use robust byte handling
-      this.worker = new Worker('/workers/table-of-contents-v2.worker.js', { type: 'module' });
+      // Use V3 worker to bypass cache and use robust byte handling
+      this.worker = new Worker('/workers/table-of-contents-v3.worker.js', { type: 'module' });
 
       this.worker.onmessage = (e) => {
         const data = e.data;

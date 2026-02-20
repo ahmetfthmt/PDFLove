@@ -1,5 +1,5 @@
 /**
- * Table of Contents Worker V2
+ * Table of Contents Worker V3
  * Use explicit versioning to bypass browser cache
  */
 
@@ -15,6 +15,7 @@ async function init() {
 
     pyodide = await loadPyodide({
         indexURL: '/pymupdf-wasm/',
+        stdLibURL: '/pymupdf-wasm/python_stdlib.data',
         fullStdLib: false
     });
 
@@ -253,14 +254,34 @@ self.onmessage = async (event) => {
                     throw new Error('Generated PDF has 0 bytes');
                 }
 
-                // Use Blob for robust transfer, similar to word-to-pdf worker
-                const pdfBlob = new Blob([safePdfBytes], { type: 'application/pdf' });
-                console.log('Worker: Created Blob size:', pdfBlob.size);
+                // Transfer ArrayBuffer directly (more reliable than Blob)
+                console.log('Worker: Sending PDF bytes:', safePdfBytes.length);
+
+                // Check for ZIP signature (PK..) to prevent returning python_stdlib.zip accidentally
+                if (safePdfBytes.length > 4 &&
+                    safePdfBytes[0] === 0x50 &&
+                    safePdfBytes[1] === 0x4B &&
+                    safePdfBytes[2] === 0x03 &&
+                    safePdfBytes[3] === 0x04) {
+                    console.error('Worker: FATAL - Generated file is a ZIP, not a PDF!');
+                    throw new Error('Internal Error: Worker generated a ZIP file instead of PDF.');
+                }
+
+                // Check for PDF signature (%PDF)
+                if (safePdfBytes.length > 4 &&
+                    safePdfBytes[0] === 0x25 &&
+                    safePdfBytes[1] === 0x50 &&
+                    safePdfBytes[2] === 0x44 &&
+                    safePdfBytes[3] === 0x46) {
+                    // Check passed
+                } else {
+                    console.warn('Worker: Warning - Generated file does not start with %PDF');
+                }
 
                 self.postMessage({
                     status: 'success',
-                    pdfBlob: pdfBlob
-                });
+                    pdfBytes: safePdfBytes.buffer
+                }, [safePdfBytes.buffer]);
             }
         } catch (error) {
             console.error('TOC Worker error:', error);

@@ -1,0 +1,16 @@
+{
+    "name": "PDFCraft",
+    "short_name": "PDFCraft",
+    "description": "Secure, Client-Side PDF Tools",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0f172a",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

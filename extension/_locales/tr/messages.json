@@ -1,0 +1,56 @@
+{
+    "extensionName": {
+        "message": "PDFCraft - PDF Araçları"
+    },
+    "extensionDescription": {
+        "message": "90'dan fazla ücretsiz çevrimiçi PDF aracına hızlı erişim. PDF'leri birleştirin, bölün, sıkıştırın, dönüştürün - hepsi tarayıcınızda."
+    },
+    "popupTagline": {
+        "message": "90'dan Fazla Ücretsiz PDF Aracı"
+    },
+    "toolMerge": {
+        "message": "Birleştir"
+    },
+    "toolSplit": {
+        "message": "Böl"
+    },
+    "toolCompress": {
+        "message": "Sıkıştır"
+    },
+    "toolEdit": {
+        "message": "Düzenle"
+    },
+    "toolJpgToPdf": {
+        "message": "JPG→PDF"
+    },
+    "toolPdfToJpg": {
+        "message": "PDF→JPG"
+    },
+    "toolSign": {
+        "message": "İmzala"
+    },
+    "toolEncrypt": {
+        "message": "Şifrele"
+    },
+    "openSiteBtn": {
+        "message": "PDFCraft'ı Aç →"
+    },
+    "footerText": {
+        "message": "%100 Ücretsiz ve Gizli • Dosya kaydı yok"
+    },
+    "menuOpen": {
+        "message": "PDFCraft ile Aç"
+    },
+    "menuMerge": {
+        "message": "PDF'leri Birleştir"
+    },
+    "menuCompress": {
+        "message": "PDF'i Sıkıştır"
+    },
+    "menuConvert": {
+        "message": "PDF'ye Dönüştür"
+    },
+    "menuAllTools": {
+        "message": "Tüm Araçlar →"
+    }
+}

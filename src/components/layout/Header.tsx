@@ -8,6 +8,7 @@ import { Search, Menu, X, Command, Github } from 'lucide-react';
 import { type Locale } from '@/lib/i18n/config';
 import { Button } from '@/components/ui/Button';
 import { RecentFilesDropdown } from '@/components/common/RecentFilesDropdown';
+import LanguageSelector from '@/components/common/LanguageSelector';
 import { searchTools, SearchResult } from '@/lib/utils/search';
 import { getToolContent } from '@/config/tool-content';
 import { getAllTools } from '@/config/tools';
@@ -327,7 +328,8 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
             </a>
 
             {/* Language Selector placeholder */}
-            <div id="language-selector-slot" />
+            {/* Language Selector */}
+            <LanguageSelector />
 
             {/* Mobile Menu Toggle */}
             <Button

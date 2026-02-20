@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
 import { PDFErrorCode } from '@/types/pdf';
-import { 
-  ERROR_MESSAGE_KEYS, 
+import {
+  ERROR_MESSAGE_KEYS,
   DEFAULT_ERROR_MESSAGES,
   getAllErrorCodes,
   isValidErrorCode,
@@ -20,6 +20,8 @@ import zhMessages from '../../../messages/zh.json';
 import zhTW_Messages from '../../../messages/zh-TW.json';
 import ptMessages from '../../../messages/pt.json';
 import arMessages from '../../../messages/ar.json';
+import trMessages from '../../../messages/tr.json';
+import itMessages from '../../../messages/it.json';
 
 // Map of locale to messages
 const LOCALE_MESSAGES: Record<Locale, Record<string, unknown>> = {
@@ -33,6 +35,8 @@ const LOCALE_MESSAGES: Record<Locale, Record<string, unknown>> = {
   'zh-TW': zhTW_Messages,
   pt: ptMessages,
   ar: arMessages,
+  tr: trMessages,
+  it: itMessages,
 };
 
 /**
@@ -41,14 +45,14 @@ const LOCALE_MESSAGES: Record<Locale, Record<string, unknown>> = {
 function getNestedValue(obj: Record<string, unknown>, path: string): string | undefined {
   const keys = path.split('.');
   let current: unknown = obj;
-  
+
   for (const key of keys) {
     if (current === null || current === undefined || typeof current !== 'object') {
       return undefined;
     }
     current = (current as Record<string, unknown>)[key];
   }
-  
+
   return typeof current === 'string' ? current : undefined;
 }
 
@@ -62,7 +66,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: every error code has a message key defined', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
@@ -72,10 +76,10 @@ describe('Error Message Mapping Property Tests', () => {
           expect(messageKey).toBeDefined();
           expect(typeof messageKey).toBe('string');
           expect(messageKey.length).toBeGreaterThan(0);
-          
+
           // Message key should follow the pattern 'errors.{errorName}'
           expect(messageKey).toMatch(/^errors\./);
-          
+
           return true;
         }
       ),
@@ -91,7 +95,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: every error code has a default English message', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
@@ -101,7 +105,7 @@ describe('Error Message Mapping Property Tests', () => {
           expect(defaultMessage).toBeDefined();
           expect(typeof defaultMessage).toBe('string');
           expect(defaultMessage.length).toBeGreaterThan(0);
-          
+
           return true;
         }
       ),
@@ -118,7 +122,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: every error code has a message in all supported locales', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
@@ -127,19 +131,19 @@ describe('Error Message Mapping Property Tests', () => {
           // Get the message key for this error code
           const messageKey = ERROR_MESSAGE_KEYS[errorCode];
           expect(messageKey).toBeDefined();
-          
+
           // Get the messages for this locale
           const messages = LOCALE_MESSAGES[locale];
           expect(messages).toBeDefined();
-          
+
           // Get the error message from the locale messages
           const errorMessage = getNestedValue(messages, messageKey);
-          
+
           // Every error code should have a message in every locale
           expect(errorMessage).toBeDefined();
           expect(typeof errorMessage).toBe('string');
           expect(errorMessage!.length).toBeGreaterThan(0);
-          
+
           return true;
         }
       ),
@@ -156,7 +160,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: error messages are user-friendly (not raw error codes)', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
@@ -165,19 +169,19 @@ describe('Error Message Mapping Property Tests', () => {
           const messageKey = ERROR_MESSAGE_KEYS[errorCode];
           const messages = LOCALE_MESSAGES[locale];
           const errorMessage = getNestedValue(messages, messageKey);
-          
+
           // Message should not be the raw error code
           expect(errorMessage).not.toBe(errorCode);
-          
+
           // Message should not contain the raw error code format (SCREAMING_SNAKE_CASE)
           expect(errorMessage).not.toMatch(/^[A-Z_]+$/);
-          
+
           // Message should be a proper sentence (contains spaces or is localized)
           // For non-English locales, we just check it's not empty
           if (locale === 'en') {
             expect(errorMessage).toMatch(/\s/); // Contains at least one space
           }
-          
+
           return true;
         }
       ),
@@ -193,7 +197,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: isValidErrorCode correctly validates error codes', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
@@ -215,7 +219,7 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: random strings are not valid error codes', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.string({ minLength: 1, maxLength: 50 }).filter(s => !allErrorCodes.includes(s as PDFErrorCode)),
@@ -237,20 +241,20 @@ describe('Error Message Mapping Property Tests', () => {
    */
   it('Property 9: error message keys follow consistent naming convention', () => {
     const allErrorCodes = getAllErrorCodes();
-    
+
     fc.assert(
       fc.property(
         fc.constantFrom(...allErrorCodes),
         (errorCode) => {
           const messageKey = ERROR_MESSAGE_KEYS[errorCode];
-          
+
           // All message keys should start with 'errors.'
           expect(messageKey.startsWith('errors.')).toBe(true);
-          
+
           // The key after 'errors.' should be camelCase
           const keyName = messageKey.replace('errors.', '');
           expect(keyName).toMatch(/^[a-z][a-zA-Z]*$/);
-          
+
           return true;
         }
       ),
@@ -264,10 +268,10 @@ describe('Error Message Mapping Property Tests', () => {
   it('Property 9: all error codes have corresponding message keys (completeness check)', () => {
     const allErrorCodes = getAllErrorCodes();
     const messageKeyCount = Object.keys(ERROR_MESSAGE_KEYS).length;
-    
+
     // The number of error codes should match the number of message keys
     expect(allErrorCodes.length).toBe(messageKeyCount);
-    
+
     // Every error code should be a key in ERROR_MESSAGE_KEYS
     for (const code of allErrorCodes) {
       expect(ERROR_MESSAGE_KEYS).toHaveProperty(code);

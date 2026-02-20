@@ -173,29 +173,29 @@ export const toolContentEn: Record<string, ToolContent> = {
   },
 
   'edit-pdf': {
-    title: 'Edit PDF',
-    metaDescription: 'Edit PDF files online. Add text, images, annotations, highlights, and shapes to your documents.',
-    keywords: ['edit pdf', 'pdf editor', 'annotate pdf', 'add text to pdf', 'pdf markup'],
+    title: 'Full PDF Editor',
+    metaDescription: 'Edit PDF text, shapes, and images directly. Advanced PDF editor to modify existing content, fonts, and layouts.',
+    keywords: ['edit pdf', 'pdf editor', 'edit pdf text', 'modify pdf content', 'change pdf images', 'pdf font editor'],
     description: `
-      <p>Edit PDF provides a comprehensive set of tools for modifying and annotating your PDF documents. Add text, images, shapes, highlights, comments, and more without needing expensive desktop software.</p>
-      <p>The intuitive editor interface makes it easy to mark up documents for review, add notes for collaboration, redact sensitive information, or enhance documents with additional content.</p>
-      <p>All editing happens locally in your browser, ensuring complete privacy for your sensitive documents.</p>
+      <p>Full PDF Editor allows you to modify every aspect of your PDF documents. Unlike simple annotators, this tool gives you the power to edit existing text, move or resize images, and manipulate shapes directly on the page.</p>
+      <p>Change font styles, update paragraphs, or replace outdated images without needing the original source file. Perfect for last-minute corrections, comprehensive document updates, and professional layouts.</p>
+      <p>The editor also includes advanced annotation features like highlighting, commenting, and secure redaction. All processing is done locally in your browser, ensuring your documents remain private and secure.</p>
     `,
     howToUse: [
       { step: 1, title: 'Upload Your PDF', description: 'Drag and drop your PDF file or click to select the document you want to edit.' },
-      { step: 2, title: 'Select Editing Tool', description: 'Choose from the toolbar: text, highlight, shapes, images, comments, or redaction tools.' },
-      { step: 3, title: 'Make Your Edits', description: 'Click on the document to add annotations, drag to position elements, and use the properties panel to customize.' },
-      { step: 4, title: 'Save and Download', description: 'Click Save to apply your changes and download the edited PDF.' },
+      { step: 2, title: 'Select Content to Edit', description: 'Click on any existing text block to edit text, or select images and shapes to resize and move them.' },
+      { step: 3, title: 'Use Advanced Tools', description: 'Add new text, import images, or use annotation tools from the sidebar to enhance your document.' },
+      { step: 4, title: 'Save and Download', description: 'Click Save to apply your changes and download the fully edited PDF document.' },
     ],
     useCases: [
-      { title: 'Document Review', description: 'Add comments, highlights, and markup to documents for collaborative review processes.', icon: 'message-square' },
-      { title: 'Form Completion', description: 'Fill in text fields, add signatures, and complete PDF forms without printing.', icon: 'edit-3' },
-      { title: 'Content Redaction', description: 'Permanently remove sensitive information from documents before sharing.', icon: 'eye-off' },
+      { title: 'Update Existing Content', description: 'Fix typos, update dates, or change contact information directly in the PDF text.', icon: 'edit-3' },
+      { title: 'Graphic Modifications', description: 'Replace old logos, resize diagrams, or reorder visual elements on any page.', icon: 'image' },
+      { title: 'Professional Markup', description: 'Add professional-grade annotations and redactions for internal and legal reviews.', icon: 'shield' },
     ],
     faq: [
-      { question: 'Can I edit the original text in the PDF?', answer: 'This tool focuses on adding annotations and new content. For editing existing text, you may need to use the original source document.' },
-      { question: 'Are my edits permanent?', answer: 'Annotations can be flattened to make them permanent, or kept as editable layers depending on your preference.' },
-      { question: 'Can I undo my changes?', answer: 'Yes, the editor supports undo/redo functionality. You can also reset to the original document at any time before saving.' },
+      { question: 'Can I edit the original text in the PDF?', answer: 'Yes! You can click on any text block to modify its content, change the font, adjust the size, or update the styling directly.' },
+      { question: 'Are images and shapes editable?', answer: 'Absolutely. You can select existing images and shapes to move, resize, or delete them, and also upload new ones.' },
+      { question: 'Do I need the original source file?', answer: 'No, this tool allows you to make modifications directly to the PDF file itself.' },
     ],
   },
 

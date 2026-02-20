@@ -1,0 +1,56 @@
+{
+    "extensionName": {
+        "message": "PDFCraft - PDF Tools"
+    },
+    "extensionDescription": {
+        "message": "Quick access to 90+ free online PDF tools. Merge, split, compress, convert PDFs - all in your browser."
+    },
+    "popupTagline": {
+        "message": "90+ Free PDF Tools"
+    },
+    "toolMerge": {
+        "message": "Merge"
+    },
+    "toolSplit": {
+        "message": "Split"
+    },
+    "toolCompress": {
+        "message": "Compress"
+    },
+    "toolEdit": {
+        "message": "Edit"
+    },
+    "toolJpgToPdf": {
+        "message": "JPG→PDF"
+    },
+    "toolPdfToJpg": {
+        "message": "PDF→JPG"
+    },
+    "toolSign": {
+        "message": "Sign"
+    },
+    "toolEncrypt": {
+        "message": "Encrypt"
+    },
+    "openSiteBtn": {
+        "message": "Open PDFCraft →"
+    },
+    "footerText": {
+        "message": "100% Free & Private • No uploads"
+    },
+    "menuOpen": {
+        "message": "Open with PDFCraft"
+    },
+    "menuMerge": {
+        "message": "Merge PDFs"
+    },
+    "menuCompress": {
+        "message": "Compress PDF"
+    },
+    "menuConvert": {
+        "message": "Convert to PDF"
+    },
+    "menuAllTools": {
+        "message": "All Tools →"
+    }
+}

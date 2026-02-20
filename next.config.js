@@ -212,6 +212,14 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Prevent automatic download of python_stdlib.data (renamed from .zip)
+        source: '/pymupdf-wasm/python_stdlib.data',
+        headers: [
+          { key: 'Content-Type', value: 'application/octet-stream' },
+          { key: 'Content-Disposition', value: 'inline' },
+        ],
+      },
     ];
   },
 };
