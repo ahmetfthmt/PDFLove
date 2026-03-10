@@ -18,8 +18,8 @@ export interface TourStep {
   highlightPadding?: number;
 }
 
-const TOUR_COMPLETED_KEY = 'pdfcraft_tour_completed';
-const TOUR_DISMISSED_KEY = 'pdfcraft_tour_dismissed';
+const TOUR_COMPLETED_KEY = 'PdfLove_tour_completed';
+const TOUR_DISMISSED_KEY = 'PdfLove_tour_dismissed';
 
 /**
  * Check if localStorage is available
@@ -143,3 +143,4 @@ export function useGuidedTour(steps: TourStep[]): UseGuidedTourReturn {
     resetTour,
   };
 }
+

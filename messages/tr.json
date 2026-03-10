@@ -1,7 +1,7 @@
 {
     "metadata": {
         "home": {
-            "title": "PDFCraft - Profesyonel PDF Araçları",
+            "title": "PdfLove - Profesyonel PDF Araçları",
             "description": "Ücretsiz, Gizli ve Tarayıcı Tabanlı. PDF dosyalarını sunuculara yüklemeden çevrimiçi birleştirin, düzenleyin ve dönüştürün."
         },
         "tools": {
@@ -10,19 +10,19 @@
         },
         "about": {
             "title": "Hakkında",
-            "description": "PDFCraft hakkında bilgi edinin - ücretsiz, gizli ve güçlü PDF araç setiniz. Tüm işlemler tarayıcınızda gerçekleşir."
+            "description": "PdfLove hakkında bilgi edinin - ücretsiz, gizli ve güçlü PDF araç setiniz. Tüm işlemler tarayıcınızda gerçekleşir."
         },
         "faq": {
             "title": "Sıkça Sorulan Sorular",
-            "description": "PDFCraft hakkında sık sorulan soruların cevaplarını bulun. PDF araçlarımızı nasıl etkili kullanacağınızı öğrenin."
+            "description": "PdfLove hakkında sık sorulan soruların cevaplarını bulun. PDF araçlarımızı nasıl etkili kullanacağınızı öğrenin."
         },
         "privacy": {
             "title": "Gizlilik Politikası",
-            "description": "PDFCraft gizlilik politikası. Dosyalarınız asla cihazınızdan çıkmaz - tüm işlemler yerel olarak tarayıcınızda gerçekleşir."
+            "description": "PdfLove gizlilik politikası. Dosyalarınız asla cihazınızdan çıkmaz - tüm işlemler yerel olarak tarayıcınızda gerçekleşir."
         },
         "contact": {
             "title": "İletişim",
-            "description": "PDFCraft ekibiyle iletişime geçin. Sizden haber almayı çok isteriz."
+            "description": "PdfLove ekibiyle iletişime geçin. Sizden haber almayı çok isteriz."
         },
         "keywords": {
             "pdfTools": "PDF araçları",
@@ -35,7 +35,7 @@
         }
     },
     "common": {
-        "brand": "PDFCraft",
+        "brand": "PdfLove",
         "tagline": "Profesyonel PDF Araçları - Ücretsiz & Gizli",
         "navigation": {
             "home": "Ana Sayfa",
@@ -83,8 +83,8 @@
             "loading": "Yükleniyor..."
         },
         "footer": {
-            "footer": "© 2025 PDFCraft. Tüm hakları saklıdır.",
-            "copyright": "© {year} PDFCraft. Tüm hakları saklıdır.",
+            "footer": "© 2025 PdfLove. Tüm hakları saklıdır.",
+            "copyright": "© {year} PdfLove. Tüm hakları saklıdır.",
             "privacyBadge": "%100 Gizli - Dosyalarınız asla cihazınızdan çıkmaz",
             "madeWith": "<Heart /> ve <Nextjs /> ile yapıldı"
         },
@@ -129,7 +129,7 @@
             "finish": "Bitir",
             "skip": "Atla",
             "stepOf": "/",
-            "welcomeTitle": "PDFCraft'a Hoş Geldiniz!",
+            "welcomeTitle": "PdfLove'a Hoş Geldiniz!",
             "welcomeMessage": "PDF araçlarımızı nasıl kullanacağınızı öğrenmek için hızlı bir tur ister misiniz? Sadece bir dakika sürer.",
             "helpButton": "Yardım Turu"
         },
@@ -200,16 +200,16 @@
         "sections": {
             "general": {
                 "whatIs": {
-                    "question": "PDFCraft nedir?",
-                    "answer": "PDFCraft, tamamen tarayıcınızda çalışan ücretsiz, gizlilik odaklı bir PDF araç setidir. Dosyalarınızı herhangi bir sunucuya yüklemeden PDF dosyalarını düzenlemek, dönüştürmek, birleştirmek, bölmek ve güvenliğini sağlamak için 80+ profesyonel araç sunar."
+                    "question": "PdfLove nedir?",
+                    "answer": "PdfLove, tamamen tarayıcınızda çalışan ücretsiz, gizlilik odaklı bir PDF araç setidir. Dosyalarınızı herhangi bir sunucuya yüklemeden PDF dosyalarını düzenlemek, dönüştürmek, birleştirmek, bölmek ve güvenliğini sağlamak için 80+ profesyonel araç sunar."
                 },
                 "isFree": {
-                    "question": "PDFCraft gerçekten ücretsiz mi?",
-                    "answer": "Evet, PDFCraft tamamen ücretsizdir. Gizli maliyetler, premium üyelikler yoktur ve kayıt gerektirmez. Tüm özellikler herkesin kullanımına açıktır."
+                    "question": "PdfLove gerçekten ücretsiz mi?",
+                    "answer": "Evet, PdfLove tamamen ücretsizdir. Gizli maliyetler, premium üyelikler yoktur ve kayıt gerektirmez. Tüm özellikler herkesin kullanımına açıktır."
                 },
                 "account": {
                     "question": "Hesap oluşturmam gerekiyor mu?",
-                    "answer": "Hayır, PDFCraft'ı kullanmak için hesap oluşturmanıza veya kayıt olmanıza gerek yoktur. Sadece web sitesini ziyaret edin ve herhangi bir aracı hemen kullanmaya başlayın."
+                    "answer": "Hayır, PdfLove'ı kullanmak için hesap oluşturmanıza veya kayıt olmanıza gerek yoktur. Sadece web sitesini ziyaret edin ve herhangi bir aracı hemen kullanmaya başlayın."
                 }
             },
             "privacy": {
@@ -218,8 +218,8 @@
                     "answer": "Hayır, dosyalarınız asla herhangi bir sunucuya yüklenmez. Tüm PDF işlemleri JavaScript ve WebAssembly kullanılarak tarayıcınızda yerel olarak gerçekleşir. Dosyalarınız asla cihazınızdan çıkmaz."
                 },
                 "safe": {
-                    "question": "Hassas belgelerle PDFCraft kullanmak güvenli mi?",
-                    "answer": "Evet, PDFCraft gizlilik gözetilerek tasarlanmıştır. Tüm işlemler tarayıcınızda yerel olarak gerçekleştiğinden, hassas belgeleriniz cihazınızda kalır ve asla internet üzerinden iletilmez."
+                    "question": "Hassas belgelerle PdfLove kullanmak güvenli mi?",
+                    "answer": "Evet, PdfLove gizlilik gözetilerek tasarlanmıştır. Tüm işlemler tarayıcınızda yerel olarak gerçekleştiğinden, hassas belgeleriniz cihazınızda kalır ve asla internet üzerinden iletilmez."
                 },
                 "storage": {
                     "question": "İşlemden sonra dosyalarıma ne olur?",
@@ -229,7 +229,7 @@
             "features": {
                 "operations": {
                     "question": "Hangi PDF işlemlerini yapabilirim?",
-                    "answer": "PDFCraft şunlar dahil 67+ araç sunar: birleştirme, bölme, sıkıştırma, dönüştürme (görüntüden/metinden/JSON'dan), düzenleme, açıklama ekleme, imzalama, filigran ekleme, şifreleme/şifre çözme, OCR ve çok daha fazlası."
+                    "answer": "PdfLove şunlar dahil 67+ araç sunar: birleştirme, bölme, sıkıştırma, dönüştürme (görüntüden/metinden/JSON'dan), düzenleme, açıklama ekleme, imzalama, filigran ekleme, şifreleme/şifre çözme, OCR ve çok daha fazlası."
                 },
                 "merge": {
                     "question": "Birden fazla PDF dosyasını birleştirebilir miyim?",
@@ -237,17 +237,17 @@
                 },
                 "images": {
                     "question": "Görüntüleri PDF'ye dönüştürebilir miyim?",
-                    "answer": "Evet, PDFCraft çeşitli görüntü formatlarını (JPG, PNG, WebP, BMP, TIFF, SVG, HEIC) PDF'ye dönüştürmeyi destekler. Tek veya birden fazla görüntüyü aynı anda dönüştürebilirsiniz."
+                    "answer": "Evet, PdfLove çeşitli görüntü formatlarını (JPG, PNG, WebP, BMP, TIFF, SVG, HEIC) PDF'ye dönüştürmeyi destekler. Tek veya birden fazla görüntüyü aynı anda dönüştürebilirsiniz."
                 },
                 "edit": {
                     "question": "PDF'deki metni düzenleyebilir miyim?",
-                    "answer": "PDFCraft, vurgulama, metin ekleme, şekiller, resimler ve imzalar dahil olmak üzere açıklama ve düzenleme araçları sağlar. Tam metin düzenleme için PDF Düzenleyici aracı kapsamlı özellikler sunar."
+                    "answer": "PdfLove, vurgulama, metin ekleme, şekiller, resimler ve imzalar dahil olmak üzere açıklama ve düzenleme araçları sağlar. Tam metin düzenleme için PDF Düzenleyici aracı kapsamlı özellikler sunar."
                 }
             },
             "technical": {
                 "browsers": {
                     "question": "Hangi tarayıcılar destekleniyor?",
-                    "answer": "PDFCraft, Chrome, Firefox, Safari ve Edge dahil olmak üzere tüm modern tarayıcılarda çalışır. En iyi deneyim için tarayıcınızın en son sürümünü kullanmanızı öneririz."
+                    "answer": "PdfLove, Chrome, Firefox, Safari ve Edge dahil olmak üzere tüm modern tarayıcılarda çalışır. En iyi deneyim için tarayıcınızın en son sürümünü kullanmanızı öneririz."
                 },
                 "sizeLimit": {
                     "question": "Dosya boyutu sınırı var mı?",
@@ -258,14 +258,14 @@
                     "answer": "Tüm işlemler tarayıcınızda gerçekleştiğinden, performans cihazınızın özelliklerine bağlıdır. Büyük dosyalar daha fazla bellek ve işlem gücü gerektirir. En iyi sonuçlar için diğer tarayıcı sekmelerini ve uygulamaları kapatın."
                 },
                 "offline": {
-                    "question": "PDFCraft çevrimdışı çalışır mı?",
-                    "answer": "Şu anda PDFCraft, uygulamayı yüklemek için bir internet bağlantısı gerektirir. Ancak yüklendikten sonra, PDF işlemleri yerel olarak gerçekleşir ve bağlantı gerektirmez."
+                    "question": "PdfLove çevrimdışı çalışır mı?",
+                    "answer": "Şu anda PdfLove, uygulamayı yüklemek için bir internet bağlantısı gerektirir. Ancak yüklendikten sonra, PDF işlemleri yerel olarak gerçekleşir ve bağlantı gerektirmez."
                 }
             },
             "languages": {
                 "supported": {
                     "question": "Hangi diller destekleniyor?",
-                    "answer": "PDFCraft 10 dilde mevcuttur: İngilizce, Türkçe, Japonca, Korece, İspanyolca, Fransızca, Almanca, Çince, Portekizce ve Arapça."
+                    "answer": "PdfLove 10 dilde mevcuttur: İngilizce, Türkçe, Japonca, Korece, İspanyolca, Fransızca, Almanca, Çince, Portekizce ve Arapça."
                 },
                 "change": {
                     "question": "Dili nasıl değiştirebilirim?",
@@ -296,7 +296,7 @@
             },
             "fast": {
                 "title": "Hızlı & Verimli",
-                "description": "Modern web teknolojileriyle güçlendirilen PDFCraft, yükleme veya indirme gerektirmeden yıldırım hızında PDF işlemi sağlar."
+                "description": "Modern web teknolojileriyle güçlendirilen PdfLove, yükleme veya indirme gerektirmeden yıldırım hızında PDF işlemi sağlar."
             },
             "accessible": {
                 "title": "Her Yerden Erişilebilir",
@@ -304,7 +304,7 @@
             },
             "free": {
                 "title": "Sonsuza Kadar Ücretsiz",
-                "description": "PDFCraft, gizli maliyetler olmadan, kayıt gerektirmeden ve kullanım sınırı olmadan tamamen ücretsizdir."
+                "description": "PdfLove, gizli maliyetler olmadan, kayıt gerektirmeden ve kullanım sınırı olmadan tamamen ücretsizdir."
             },
             "openSource": {
                 "title": "Açık Kaynak",
@@ -342,7 +342,7 @@
             "email": {
                 "title": "E-posta",
                 "description": "Bize bir e-posta gönderin, 24-48 saat içinde yanıt verelim.",
-                "action": "contact@pdfcraft.app"
+                "action": "contact@PdfLove.app"
             },
             "github": {
                 "title": "GitHub",
@@ -352,7 +352,7 @@
             "twitter": {
                 "title": "Twitter",
                 "description": "Güncellemeler ve duyurular için bizi takip edin.",
-                "action": "@pdfcraft"
+                "action": "@PdfLove"
             }
         },
         "form": {
@@ -482,7 +482,7 @@
     "workflow": {
         "title": "PDF İş Akışı Oluşturucu",
         "subtitle": "Araçları bağlayarak özel PDF işlem hatları oluşturun",
-        "metaTitle": "PDF İş Akışı Oluşturucu - PDFCraft",
+        "metaTitle": "PDF İş Akışı Oluşturucu - PdfLove",
         "metaDescription": "Araçları görsel olarak bağlayarak özel PDF işlem hatları oluşturun. İş akışlarınızı oluşturun, kaydedin ve yeniden kullanın.",
         "toolbox": "Araç Kutusu",
         "dragToAdd": "İş akışına eklemek için araçları sürükleyin",

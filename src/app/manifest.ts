@@ -14,12 +14,12 @@ export const dynamic = 'force-static';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
-    short_name: 'PDFCraft',
+    short_name: 'PdfLove',
     description: siteConfig.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: '#3b82f6',
+    theme_color: '#f43f5e',
     orientation: 'portrait-primary',
     categories: ['productivity', 'utilities'],
     icons: [
@@ -74,3 +74,4 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
+

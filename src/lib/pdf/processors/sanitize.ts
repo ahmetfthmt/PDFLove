@@ -186,7 +186,7 @@ export class SanitizePDFProcessor extends BasePDFProcessor {
           pdfDoc.setSubject('');
           pdfDoc.setKeywords([]);
           pdfDoc.setCreator('');
-          pdfDoc.setProducer('PDFCraft');
+          pdfDoc.setProducer('PdfLove');
 
           // Remove XMP metadata
           try {
@@ -424,3 +424,4 @@ export async function sanitizePDF(
     onProgress
   );
 }
+

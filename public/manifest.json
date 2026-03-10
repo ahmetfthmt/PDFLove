@@ -1,16 +1,66 @@
 {
-    "name": "PDFCraft",
-    "short_name": "PDFCraft",
-    "description": "Secure, Client-Side PDF Tools",
+    "name": "PDFLove - Secure PDF Tools",
+    "short_name": "PDFLove",
+    "description": "Secure, Client-Side PDF Tools with PWA Support",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#0f172a",
+    "theme_color": "#e11d48",
+    "orientation": "any",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["productivity", "utilities", "business"],
     "icons": [
         {
             "src": "/favicon.svg",
             "sizes": "any",
-            "type": "image/svg+xml"
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
         }
-    ]
+    ],
+    "screenshots": [
+        {
+            "src": "/images/workflow-editor-screenshot.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "label": "Workflow Editor"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Merge PDFs",
+            "short_name": "Merge",
+            "description": "Combine multiple PDF files into one",
+            "url": "/?tool=merge",
+            "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+        },
+        {
+            "name": "Compress PDF",
+            "short_name": "Compress",
+            "description": "Reduce PDF file size",
+            "url": "/?tool=compress",
+            "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+        },
+        {
+            "name": "Split PDF",
+            "short_name": "Split",
+            "description": "Split PDF into multiple files",
+            "url": "/?tool=split",
+            "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+        }
+    ],
+    "prefer_related_applications": false,
+    "handle_links": "preferred",
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    },
+    "edge_side_panel": {
+        "preferred_width": 400
+    }
 }

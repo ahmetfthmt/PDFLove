@@ -6,7 +6,7 @@
 import { SavedWorkflow, WorkflowNode, WorkflowEdge } from '@/types/workflow';
 import { logger } from '@/lib/utils/logger';
 
-const STORAGE_KEY = 'pdfcraft_workflows';
+const STORAGE_KEY = 'PdfLove_workflows';
 const MAX_WORKFLOWS = 50;
 
 /**
@@ -231,3 +231,4 @@ export function searchWorkflows(query: string): SavedWorkflow[] {
         (w.description && w.description.toLowerCase().includes(lowerQuery))
     );
 }
+

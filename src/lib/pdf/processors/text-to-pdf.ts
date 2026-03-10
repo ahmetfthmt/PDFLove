@@ -129,7 +129,7 @@ const fontCache: Map<string, ArrayBuffer> = new Map();
 /**
  * IndexedDB font cache
  */
-const DB_NAME = 'pdfcraft-fonts';
+const DB_NAME = 'PdfLove-fonts';
 const DB_VERSION = 1;
 const STORE_NAME = 'fonts';
 
@@ -471,3 +471,4 @@ export async function textToPDF(
     onProgress
   );
 }
+

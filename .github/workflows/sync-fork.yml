@@ -24,7 +24,7 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          upstream_sync_repo: PDFCraftTool/pdfcraft
+          upstream_sync_repo: PdfLoveTool/PdfLove
           upstream_sync_branch: main
           target_sync_branch: main
           test_mode: false
@@ -42,3 +42,4 @@ jobs:
           echo "3. Network issues"
           echo "Please check the logs and consider manual sync if needed."
           exit 1
+
