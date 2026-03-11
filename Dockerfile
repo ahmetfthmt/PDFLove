@@ -1,13 +1,18 @@
 # =============================================================================
 # Stage 1: Build
 # =============================================================================
-FROM node:22-alpine AS builder
+FROM node:22-bookworm-slim AS builder
 
 WORKDIR /app
 
+# Install build tools needed for native npm packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --prefer-offline
 
 # Copy the rest of the source
 COPY . .
@@ -19,7 +24,7 @@ RUN npm run build
 # =============================================================================
 # Stage 2: Serve with nginx
 # =============================================================================
-FROM nginx:alpine AS runner
+FROM nginx:bookworm AS runner
 
 # Copy static export output
 COPY --from=builder /app/out /usr/share/nginx/html
