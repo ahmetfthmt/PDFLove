@@ -1,41 +1,39 @@
 /**
  * Font Configuration
  * Requirements: 8.4 - Font optimization
- * 
- * Uses next/font for automatic font optimization including:
- * - Font subsetting (only loads characters used)
- * - Self-hosting (no external requests to Google Fonts)
- * - Zero layout shift with size-adjust
- * - display: swap for better performance
+ *
+ * Build environments without outbound TLS access can fail while fetching
+ * Google Fonts during `next build`. Use local/system fallbacks so builds
+ * remain deterministic in Docker and CI.
  */
 
-import { Inter, JetBrains_Mono } from 'next/font/google';
+const interFontFamily = ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'].join(', ');
+
+const jetbrainsMonoFontFamily = ['JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'monospace'].join(', ');
 
 /**
  * Inter font - Primary sans-serif font
  * Used for body text and UI elements
  */
-export const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  display: 'swap',
-  variable: '--font-inter',
-  preload: true,
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-  adjustFontFallback: true,
-});
+export const inter = {
+  variable: '',
+  className: '',
+  style: {
+    fontFamily: interFontFamily,
+  },
+} as const;
 
 /**
  * JetBrains Mono font - Monospace font
  * Used for code snippets and technical content
  */
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin', 'latin-ext'],
-  display: 'swap',
-  variable: '--font-jetbrains-mono',
-  preload: false, // Only preload if code is shown above the fold
-  fallback: ['Fira Code', 'Consolas', 'Monaco', 'monospace'],
-  adjustFontFallback: true,
-});
+export const jetbrainsMono = {
+  variable: '',
+  className: '',
+  style: {
+    fontFamily: jetbrainsMonoFontFamily,
+  },
+} as const;
 
 /**
  * Combined font variables for use in className
