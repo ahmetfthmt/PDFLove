@@ -24,6 +24,14 @@
       "title": "Contact Us",
       "description": "Get in touch with PdfLove team. We'd love to hear from you."
     },
+    "terms": {
+      "title": "Terms of Service",
+      "description": "PdfLove terms of service. Rules and regulations for using our application."
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "description": "PdfLove cookie policy. Learn how we use cookies."
+    },
     "keywords": {
       "pdfTools": "PDF tools",
       "mergePdf": "merge PDF",
@@ -72,7 +80,12 @@
       "rotateAllLeft": "Rotate All Left",
       "rotateAllRight": "Rotate All Right",
       "confirm": "Confirm",
-      "add": "Add"
+      "add": "Add",
+      "install": "Install",
+      "saveProject": "Save Project",
+      "loadProject": "Load Project",
+      "ocr": "OCR",
+      "duplicate": "Duplicate"
     },
     "status": {
       "idle": "Ready",
@@ -86,7 +99,33 @@
       "footer": "© 2025 PdfLove. All rights reserved.",
       "copyright": "© {year} PdfLove. All rights reserved.",
       "privacyBadge": "100% Private - Files never leave your device",
-      "madeWith": "Made with <Heart /> and <Nextjs />"
+      "madeWith": "Made with <Heart /> and <Nextjs />",
+      "sections": {
+        "resources": "Resources",
+        "security": "Security",
+        "compliance": "Compliance"
+      },
+      "securityFeatures": {
+        "clientSide": {
+          "title": "Client-side processing",
+          "description": "Files never leave your device"
+        },
+        "noUploads": {
+          "title": "No file uploads",
+          "description": "100% private & secure"
+        }
+      },
+      "complianceFeatures": {
+        "gdpr": {
+          "title": "GDPR Compliant",
+          "description": "PdfLove respects your privacy"
+        }
+      },
+      "links": {
+        "terms": "Terms",
+        "privacy": "Privacy",
+        "cookies": "Cookies"
+      }
     },
     "recentFiles": {
       "title": "Recent Files",
@@ -803,7 +842,20 @@
       "modeVisualShort": "Visual Select",
       "modeBookmarksShort": "Bookmarks",
       "modeNTimesShort": "Split N Parts",
-      "downloadZip": "Download All as ZIP"
+      "downloadZip": "Download All as ZIP",
+      "separateFilesCount": "{count} Separate Files",
+      "visualPageSelection": "Visual Page Selection",
+      "bookmarksFoundCount": "{count} Bookmarks Found",
+      "bookmarkFoundSingular": "Bookmark Found",
+      "bookmarksSplitInfo": "Your PDF will be split into {count} separate files based on the bookmark structure",
+      "splitPoints": "Split Points",
+      "scrollToSeeAll": "Scroll to see all {count} bookmarks",
+      "noBookmarksFound": "No Bookmarks Found",
+      "page": "page",
+      "pages": "pages",
+      "file": "file",
+      "files": "files",
+      "selected": "selected"
     },
     "deletePages": {
       "uploadLabel": "Upload PDF File",
@@ -2269,6 +2321,194 @@
       "pagesWithMatches": "Pages with matches:",
       "selectedMatch": "Selected",
       "unselectedMatch": "Not selected"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: December 2024",
+      "introduction": {
+        "title": "Introduction",
+        "content": "PdfLove (\"we\", \"our\", or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our PDF tools."
+      },
+      "howItWorks": {
+        "title": "How Our Service Works",
+        "content": "PdfLove is a client-side application. This means:",
+        "points": [
+          "All PDF processing happens directly in your web browser",
+          "Your files are never uploaded to our servers or any third-party servers",
+          "We cannot see, access, or store your documents",
+          "Your files remain on your device at all times"
+        ]
+      },
+      "dataCollection": {
+        "title": "What Data We Collect",
+        "content": "We collect minimal data necessary to provide and improve our service:",
+        "items": [
+          {
+            "title": "Usage Analytics",
+            "description": "Anonymous, aggregated data about which tools are used, general browser type, and geographic region (country level). No personal identifiers are collected."
+          },
+          {
+            "title": "Performance Data",
+            "description": "Technical metrics such as page load times and error rates to help us improve the service. This data is fully anonymized."
+          },
+          {
+            "title": "Preferences",
+            "description": "Your language preference and theme settings are stored locally in your browser using localStorage. This data never leaves your device."
+          }
+        ]
+      },
+      "cookies": {
+        "title": "Cookies & Local Storage",
+        "content": "We use a minimal number of technically necessary cookies and browser storage:",
+        "points": [
+          "Language preference cookie (to remember your selected language)",
+          "Theme preference (dark/light mode stored in localStorage)",
+          "Analytics session cookie (anonymous, no personal data)",
+          "We do NOT use advertising cookies or third-party tracking"
+        ]
+      },
+      "thirdParty": {
+        "title": "Third-Party Services",
+        "content": "We use a limited number of trusted third-party services:",
+        "services": [
+          {
+            "name": "Analytics",
+            "description": "Privacy-preserving analytics to understand how our tools are used. No cross-site tracking or personal data collection."
+          },
+          {
+            "name": "Content Delivery Network (CDN)",
+            "description": "To serve the application assets efficiently. CDN providers may log IP addresses briefly for security purposes."
+          }
+        ]
+      },
+      "rights": {
+        "title": "Your Rights",
+        "content": "Since we don't collect personal data about you, there is very little to manage. However, you have the right to:",
+        "points": [
+          "Clear your browser's localStorage and cookies at any time to reset all preferences",
+          "Use the application without accepting any non-essential cookies",
+          "Contact us with any privacy concerns or questions"
+        ]
+      },
+      "security": {
+        "title": "Data Security",
+        "content": "Since your files never leave your device, they are protected by your own device's security measures. We employ industry-standard security practices to protect our web application and infrastructure."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about this Privacy Policy, please contact us at contact@pdflove.app"
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: December 2024",
+      "introduction": {
+        "content": "Please read these Terms of Service carefully before using PdfLove. By accessing or using our service, you agree to be bound by these terms."
+      },
+      "section1": {
+        "title": "Acceptance of Terms",
+        "content": "By using PdfLove, you agree to be bound by these terms of service. If you do not agree to these terms, please do not use the service."
+      },
+      "section2": {
+        "title": "Usage License",
+        "content": "PdfLove is provided as a free tool for personal and commercial use. You are granted a non-exclusive, non-transferable, revocable license to use our service."
+      },
+      "permitted": {
+        "title": "Permitted Uses",
+        "points": [
+          "Processing PDF files for personal or business purposes",
+          "Using our tools to edit, convert, merge, split, or secure PDF documents",
+          "Integrating our publicly available tools into your workflow",
+          "Sharing the service with others for legitimate use"
+        ]
+      },
+      "prohibited": {
+        "title": "Prohibited Uses",
+        "content": "You agree not to use PdfLove to:",
+        "points": [
+          "Process illegal or copyright-infringing content",
+          "Attempt to reverse-engineer, hack, or disrupt our service",
+          "Use automated scripts or bots in a way that degrades service for others",
+          "Circumvent any security measures or access restrictions",
+          "Use the service for any unlawful purposes"
+        ]
+      },
+      "intellectual": {
+        "title": "Intellectual Property",
+        "content": "The PdfLove application, including its design, code, and content (excluding user files), is the intellectual property of PdfLove. All rights are reserved. Our open-source components are governed by their respective licenses."
+      },
+      "disclaimer": {
+        "title": "Disclaimer of Warranties",
+        "content": "PdfLove is provided \"as is\" without warranty of any kind. We do not guarantee uninterrupted or error-free service. Use of the service is at your own risk."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "content": "To the maximum extent permitted by law, PdfLove shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the service."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "content": "We reserve the right to modify these terms at any time. We will provide notice of significant changes by updating the \"Last updated\" date. Continued use of the service after changes constitutes acceptance."
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "Questions about these Terms of Service? Contact us at contact@pdflove.app"
+      }
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Last updated: December 2024",
+      "introduction": {
+        "content": "This Cookie Policy explains what cookies and similar technologies are, how PdfLove uses them, and your choices regarding their use."
+      },
+      "content": "PdfLove uses only essential technical cookies to improve user experience.",
+      "whatAreCookies": {
+        "title": "What Are Cookies?",
+        "content": "Cookies are small text files stored on your device when you visit a website. They help websites remember information about your visit, making your next visit easier and more useful."
+      },
+      "howWeUse": {
+        "title": "How We Use Cookies",
+        "content": "We use a minimal set of cookies, all of which are technically necessary or improve your experience:"
+      },
+      "types": [
+        {
+          "name": "Essential Cookies",
+          "purpose": "Required for the website to function properly",
+          "examples": "Session management, security tokens",
+          "duration": "Session",
+          "canDisable": false
+        },
+        {
+          "name": "Preference Cookies",
+          "purpose": "Remember your language and theme preferences",
+          "examples": "Language selection, dark/light mode",
+          "duration": "1 year",
+          "canDisable": true
+        },
+        {
+          "name": "Analytics Cookies",
+          "purpose": "Help us understand how visitors use our site (anonymized)",
+          "examples": "Page views, tool usage statistics",
+          "duration": "Session",
+          "canDisable": true
+        }
+      ],
+      "noTracking": {
+        "title": "What We Do NOT Use",
+        "points": [
+          "Advertising or targeting cookies",
+          "Third-party social media tracking pixels",
+          "Cross-site tracking technologies",
+          "Cookies that collect personally identifiable information"
+        ]
+      },
+      "control": {
+        "title": "Your Cookie Choices",
+        "content": "You can control cookies through your browser settings. Most browsers allow you to refuse cookies, delete existing cookies, or be notified when a cookie is set. Note that disabling certain cookies may affect website functionality."
+      },
+      "contact": {
+        "title": "Questions?",
+        "content": "If you have questions about our cookie practices, contact us at contact@pdflove.app"
+      }
     }
   }
 }

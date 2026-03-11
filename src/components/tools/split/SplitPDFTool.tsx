@@ -20,6 +20,7 @@ import {
 import { createZip } from '@/lib/zip';
 import { configurePdfjsWorker } from '@/lib/pdf/loader';
 import type { SplitOptions, PageRange, ProcessOutput } from '@/types/pdf';
+import { useFileStore } from '@/lib/storage/file-store';
 
 export interface SplitPDFToolProps {
   /** Custom class name */
@@ -44,7 +45,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
   const tTools = useTranslations('tools');
 
   // State
-  const [file, setFile] = useState<File | null>(null);
+  const { primaryFile: file, setPrimaryFile: setFile } = useFileStore();
   const [totalPages, setTotalPages] = useState<number>(0);
   const [status, setStatus] = useState<ProcessingStatus>('idle');
   const [progress, setProgress] = useState(0);
@@ -142,6 +143,13 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
       setIsLoadingPreviews(false);
     }
   }, []);
+
+  // Reload previews if file exists in store (e.g. after language switch)
+  useEffect(() => {
+    if (file && totalPages === 0 && !isLoadingPreviews) {
+      loadPdfPreviews(file);
+    }
+  }, [file, totalPages, loadPdfPreviews, isLoadingPreviews]);
 
   /**
    * Parse PDF.js outline to BookmarkInfo format
@@ -460,7 +468,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
               <div>
                 <p className="font-medium text-[hsl(var(--color-foreground))]">{file.name}</p>
                 <p className="text-sm text-[hsl(var(--color-muted-foreground))]">
-                  {formatSize(file.size)} • {totalPages} {totalPages === 1 ? 'page' : 'pages'}
+                  {formatSize(file.size)} • {totalPages} {totalPages === 1 ? tTools('splitPdf.page') : tTools('splitPdf.pages')}
                 </p>
               </div>
             </div>
@@ -750,7 +758,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-blue-800">
-                      {totalPages} Separate Files
+                      {tTools('splitPdf.separateFilesCount', { count: totalPages })}
                     </p>
                     <p className="text-xs text-blue-600 mt-0.5">
                       {tTools('splitPdf.everyPageInfo', { count: totalPages }) || 'Each page will be extracted as a separate PDF file'}
@@ -771,7 +779,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-purple-800">
-                      Visual Page Selection
+                      {tTools('splitPdf.visualPageSelection')}
                     </p>
                     <p className="text-xs text-purple-600 mt-0.5">
                       {tTools('splitPdf.visualInfo') || 'Click on page thumbnails below to select pages for extraction'}
@@ -796,10 +804,12 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-emerald-800">
-                            {pdfBookmarks.length} {pdfBookmarks.length === 1 ? 'Bookmark' : 'Bookmarks'} Found
+                            {pdfBookmarks.length === 1
+                              ? tTools('splitPdf.bookmarkFoundSingular')
+                              : tTools('splitPdf.bookmarksFoundCount', { count: pdfBookmarks.length })}
                           </p>
                           <p className="text-xs text-emerald-600 mt-0.5">
-                            Your PDF will be split into {pdfBookmarks.length} separate files based on the bookmark structure
+                            {tTools('splitPdf.bookmarksSplitInfo', { count: pdfBookmarks.length })}
                           </p>
                         </div>
                       </div>
@@ -813,7 +823,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                           </svg>
                           <p className="text-sm font-medium text-[hsl(var(--color-foreground))]">
-                            Split Points
+                            {tTools('splitPdf.splitPoints')}
                           </p>
                         </div>
                       </div>
@@ -830,7 +840,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                                 </span>
                               </div>
                               <span className="ml-3 flex-shrink-0 px-2 py-1 rounded-md bg-[hsl(var(--color-muted)/0.4)] text-xs font-medium text-[hsl(var(--color-muted-foreground))]">
-                                Page {bookmark.pageNumber}
+                                {tTools('splitPdf.page')} {bookmark.pageNumber}
                               </span>
                             </li>
                           ))}
@@ -839,7 +849,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                       {pdfBookmarks.length > 5 && (
                         <div className="px-4 py-2 bg-[hsl(var(--color-muted)/0.2)] border-t border-[hsl(var(--color-border)/0.5)] text-center">
                           <p className="text-xs text-[hsl(var(--color-muted-foreground))]">
-                            Scroll to see all {pdfBookmarks.length} bookmarks
+                            {tTools('splitPdf.scrollToSeeAll', { count: pdfBookmarks.length })}
                           </p>
                         </div>
                       )}
@@ -857,7 +867,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-amber-800">
-                          No Bookmarks Found
+                          {tTools('splitPdf.noBookmarksFound')}
                         </p>
                         <p className="text-xs text-amber-600 mt-0.5">
                           {tTools('splitPdf.bookmarksNotice') || 'This PDF does not contain bookmarks. The entire document will be returned as a single file.'}
@@ -904,8 +914,8 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
         <Card variant="outlined" size="lg">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-medium text-[hsl(var(--color-foreground))]">
-              {tTools('splitPdf.pagePreviewTitle') || 'Select Pages'}
-              {selectedPages.size > 0 && ` (${selectedPages.size} selected)`}
+              {tTools('splitPdf.pagePreviewTitle')}
+              {selectedPages.size > 0 && ` (${selectedPages.size} ${tTools('splitPdf.selected')})`}
             </h3>
             <div className="flex gap-2">
               <Button variant="ghost" size="sm" onClick={handleSelectAll} disabled={isProcessing}>
@@ -1003,7 +1013,7 @@ export function SplitPDFTool({ className = '' }: SplitPDFToolProps) {
       {status === 'complete' && results.length > 0 && (
         <Card variant="outlined" size="lg">
           <h3 className="text-lg font-medium text-[hsl(var(--color-foreground))] mb-4">
-            {tTools('splitPdf.resultsTitle') || 'Split Results'} ({results.length} {results.length === 1 ? 'file' : 'files'})
+            {tTools('splitPdf.resultsTitle')} ({results.length} {results.length === 1 ? tTools('splitPdf.file') : tTools('splitPdf.files')})
           </h3>
 
           {/* Download ZIP button if multiple files */}

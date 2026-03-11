@@ -24,6 +24,14 @@
             "title": "İletişim",
             "description": "PdfLove ekibiyle iletişime geçin. Sizden haber almayı çok isteriz."
         },
+        "terms": {
+            "title": "Kullanım Koşulları",
+            "description": "PdfLove kullanım koşulları. Uygulamamızı kullanırken geçerli olan kurallar ve şartlar."
+        },
+        "cookies": {
+            "title": "Çerez Politikası",
+            "description": "PdfLove çerez politikası. Çerezleri nasıl kullandığımız hakkında bilgi edinin."
+        },
         "keywords": {
             "pdfTools": "PDF araçları",
             "mergePdf": "PDF birleştirme",
@@ -72,7 +80,8 @@
             "rotateAllLeft": "Tümünü Sola Döndür",
             "rotateAllRight": "Tümünü Sağa Döndür",
             "confirm": "Onayla",
-            "add": "Ekle"
+            "add": "Ekle",
+            "install": "Yükle"
         },
         "status": {
             "idle": "Hazır",
@@ -86,7 +95,33 @@
             "footer": "© 2025 PdfLove. Tüm hakları saklıdır.",
             "copyright": "© {year} PdfLove. Tüm hakları saklıdır.",
             "privacyBadge": "%100 Gizli - Dosyalarınız asla cihazınızdan çıkmaz",
-            "madeWith": "<Heart /> ve <Nextjs /> ile yapıldı"
+            "madeWith": "<Heart /> ve <Nextjs /> ile yapıldı",
+            "sections": {
+                "resources": "Kaynaklar",
+                "security": "Güvenlik",
+                "compliance": "Uyumluluk"
+            },
+            "securityFeatures": {
+                "clientSide": {
+                    "title": "Cihaz içi işlem",
+                    "description": "Dosyalarınız asla cihazınızdan çıkmaz"
+                },
+                "noUploads": {
+                    "title": "Dosya yükleme yok",
+                    "description": "%100 gizli ve güvenli"
+                }
+            },
+            "complianceFeatures": {
+                "gdpr": {
+                    "title": "GDPR Uyumlu",
+                    "description": "PdfLove gizlilik politikanıza saygı duyar"
+                }
+            },
+            "links": {
+                "terms": "Kullanım Koşulları",
+                "privacy": "Gizlilik",
+                "cookies": "Çerezler"
+            }
         },
         "recentFiles": {
             "title": "Son Dosyalar",
@@ -617,6 +652,50 @@
             "confidentialDocument": {
                 "name": "Gizli Belge",
                 "description": "Gizli filigranı ekleyin ve PDF'yi şifreleyin"
+            },
+            "pdfToEditableDoc": {
+                "name": "PDF'den Düzenlenebilir Belgeye",
+                "description": "PDF'yi düzenleme için Word belgesine dönüştürün"
+            },
+            "fullOptimization": {
+                "name": "Tam Belge Optimizasyonu",
+                "description": "En iyi performans için sıkıştırın, düzleştirin ve doğrusallaştırın"
+            },
+            "pdfToPresentation": {
+                "name": "PDF'den PowerPoint'e",
+                "description": "PDF'yi düzenlenebilir PowerPoint sunumuna dönüştürün"
+            },
+            "unlockAndEdit": {
+                "name": "PDF'yi Aç & Düzenle",
+                "description": "Düzenleme için korumalı PDF'nin şifresini çözün"
+            },
+            "ebookConvert": {
+                "name": "eKitap'tan PDF'ye",
+                "description": "EPUB eKitaplarını PDF formatına dönüştürün"
+            },
+            "batchWatermark": {
+                "name": "Toplu Filigran",
+                "description": "Aynı anda birden fazla PDF dosyasına filigran ekleyin"
+            },
+            "archivePrep": {
+                "name": "Arşiv Hazırlığı",
+                "description": "Uzun vadeli depolama için meta verileri kaldırın, düzleştirin ve sıkıştırın"
+            },
+            "reportAssembly": {
+                "name": "Rapor Derleme",
+                "description": "Belgeleri birleştirin, sayfa numaraları, üstbilgi/altbilgi ve içindekiler tablosu ekleyin"
+            },
+            "invoiceProcessing": {
+                "name": "Fatura İşleme",
+                "description": "Sayfaları ayıklayın, filigran ekleyin ve e-posta için sıkıştırın"
+            },
+            "photoAlbum": {
+                "name": "Fotoğraf Albümü Oluşturucu",
+                "description": "Sayfa numaralarıyla görüntüleri PDF'ye dönüştürün"
+            },
+            "cropAndResize": {
+                "name": "Kırp & Sayfaları Yeniden Boyutlandır",
+                "description": "PDF sayfalarını kırpın ve sayfa boyutlarını ayarlayın"
             }
         }
     },
@@ -759,7 +838,20 @@
             "modeVisualShort": "Görsel Seçim",
             "modeBookmarksShort": "Yer İmleri",
             "modeNTimesShort": "N Parçaya Böl",
-            "downloadZip": "Tümünü ZIP Olarak İndir"
+            "downloadZip": "Tümünü ZIP Olarak İndir",
+            "separateFilesCount": "{count} Ayrı Dosya",
+            "visualPageSelection": "Görsel Sayfa Seçimi",
+            "bookmarksFoundCount": "{count} Yer İmi Bulundu",
+            "bookmarkFoundSingular": "Yer İmi Bulundu",
+            "bookmarksSplitInfo": "PDF'niz yer imi yapısına göre {count} ayrı dosyaya bölünecek",
+            "splitPoints": "Bölme Noktaları",
+            "scrollToSeeAll": "Tüm {count} yer imini görmek için kaydırın",
+            "noBookmarksFound": "Yer İmi Bulunamadı",
+            "page": "sayfa",
+            "pages": "sayfa",
+            "file": "dosya",
+            "files": "dosya",
+            "selected": "seçildi"
         },
         "deletePages": {
             "uploadLabel": "PDF Dosyası Yükle",
@@ -2225,6 +2317,194 @@
             "pagesWithMatches": "Eşleşme bulunan sayfalar:",
             "selectedMatch": "Seçildi",
             "unselectedMatch": "Seçilmedi"
+        },
+        "privacy": {
+            "title": "Gizlilik Politikası",
+            "lastUpdated": "Son güncelleme: Aralık 2024",
+            "introduction": {
+                "title": "Giriş",
+                "content": "PdfLove (\"biz\", \"bizim\" veya \"bize\"), gizliliğinizi korumayı taahhüt eder. Bu Gizlilik Politikası, PDF araçlarımızı kullandığınızda bilgilerinizin nasıl işlendiğini açıklar."
+            },
+            "howItWorks": {
+                "title": "Hizmetimiz Nasıl Çalışır",
+                "content": "PdfLove bir istemci tarafı (client-side) uygulamadır. Bu şu anlama gelir:",
+                "points": [
+                    "Tüm PDF işlemleri doğrudan web tarayıcınızda gerçekleşir",
+                    "Dosyalarınız asla sunucularımıza veya herhangi bir üçüncü taraf sunucusuna yüklenmez",
+                    "Belgelerinizi göremeyiz, onlara erişemeyiz veya onları saklayamayız",
+                    "Dosyalarınız her zaman cihazınızda kalır"
+                ]
+            },
+            "dataCollection": {
+                "title": "Hangi Verileri Topluyoruz",
+                "content": "Hizmetimizi sağlamak ve iyileştirmek için gerekli minimum düzeyde veri topluyoruz:",
+                "items": [
+                    {
+                        "title": "Kullanım Analitiği",
+                        "description": "Hangi araçların kullanıldığına, genel tarayıcı türüne ve coğrafi bölgeye (ülke düzeyinde) ilişkin anonim ve toplu veriler. Kişisel tanımlayıcı toplanmaz."
+                    },
+                    {
+                        "title": "Performans Verileri",
+                        "description": "Hizmeti iyileştirmemize yardımcı olan sayfa yükleme süreleri ve hata oranları gibi teknik metrikler. Bu veriler tamamen anonimleştirilmiştir."
+                    },
+                    {
+                        "title": "Tercihler",
+                        "description": "Dil tercihiniz ve tema ayarlarınız, tarayıcınızın localStorage'ında yerel olarak saklanır. Bu veriler cihazınızdan ayrılmaz."
+                    }
+                ]
+            },
+            "cookies": {
+                "title": "Çerezler & Yerel Depolama",
+                "content": "Teknik olarak gerekli olan minimum sayıda çerez ve tarayıcı depolama alanı kullanıyoruz:",
+                "points": [
+                    "Dil tercihi çerezi (seçtiğiniz dili hatırlamak için)",
+                    "Tema tercihi (localStorage'da saklanan koyu/açık mod)",
+                    "Analitik oturum çerezi (anonim, kişisel veri yok)",
+                    "Reklam çerezi veya üçüncü taraf izleme KULLANMIYORUZ"
+                ]
+            },
+            "thirdParty": {
+                "title": "Üçüncü Taraf Hizmetler",
+                "content": "Sınırlı sayıda güvenilir üçüncü taraf hizmet kullanıyoruz:",
+                "services": [
+                    {
+                        "name": "Analitik",
+                        "description": "Araçlarımızın nasıl kullanıldığını anlamak için gizlilik odaklı analitik. Siteler arası izleme veya kişisel veri toplama yok."
+                    },
+                    {
+                        "name": "İçerik Dağıtım Ağı (CDN)",
+                        "description": "Uygulama varlıklarını verimli şekilde sunmak için. CDN sağlayıcıları güvenlik amacıyla IP adreslerini kısa süreliğine kaydedebilir."
+                    }
+                ]
+            },
+            "rights": {
+                "title": "Haklarınız",
+                "content": "Kişisel verilerinizi toplamadığımız için yönetilecek çok az şey var. Ancak şu haklara sahipsiniz:",
+                "points": [
+                    "Tüm tercihleri sıfırlamak için tarayıcınızın localStorage ve çerezlerini istediğiniz zaman temizleyebilirsiniz",
+                    "Zorunlu olmayan çerezleri kabul etmeden uygulamayı kullanabilirsiniz",
+                    "Her türlü gizlilik endişeniz veya sorunuz için bize ulaşabilirsiniz"
+                ]
+            },
+            "security": {
+                "title": "Veri Güvenliği",
+                "content": "Dosyalarınız asla cihazınızdan çıkmadığı için kendi cihazınızın güvenlik önlemleriyle korunurlar. Web uygulamamızı ve altyapımızı korumak için sektör standardı güvenlik uygulamalarını kullanıyoruz."
+            },
+            "contact": {
+                "title": "İletişim",
+                "content": "Bu Gizlilik Politikası hakkında sorularınız varsa contact@pdflove.app adresine ulaşabilirsiniz."
+            }
+        },
+        "terms": {
+            "title": "Kullanım Koşulları",
+            "lastUpdated": "Son güncelleme: Aralık 2024",
+            "introduction": {
+                "content": "Lütfen PdfLove'ı kullanmadan önce bu Kullanım Koşullarını dikkatlice okuyun. Hizmetimize erişerek veya kullanarak bu koşullara bağlı olmayı kabul etmiş olursunuz."
+            },
+            "section1": {
+                "title": "Koşulların Kabulü",
+                "content": "PdfLove'ı kullanarak bu kullanım koşullarını kabul etmiş sayılırsınız. Bu koşulları kabul etmiyorsanız lütfen hizmeti kullanmayın."
+            },
+            "section2": {
+                "title": "Kullanım Lisansı",
+                "content": "PdfLove, kişisel ve ticari kullanım için ücretsiz bir araçtır. Size hizmeti kullanmak için münhasır olmayan, devredilemez ve iptal edilebilir bir lisans verilmektedir."
+            },
+            "permitted": {
+                "title": "İzin Verilen Kullanımlar",
+                "points": [
+                    "Kişisel veya iş amaçlı PDF dosyalarını işleme",
+                    "PDF belgelerini düzenlemek, dönüştürmek, birleştirmek, bölmek veya güvenli hale getirmek için araçlarımızı kullanma",
+                    "Herkese açık araçlarımızı iş akışınıza entegre etme",
+                    "Hizmeti meşru amaçlarla başkalarıyla paylaşma"
+                ]
+            },
+            "prohibited": {
+                "title": "Yasak Kullanımlar",
+                "content": "PdfLove'ı aşağıdaki amaçlarla kullanmamayı kabul edersiniz:",
+                "points": [
+                    "Yasadışı veya telif hakkı ihlali içeren içerikleri işleme",
+                    "Hizmetimizi tersine mühendislik yapmaya, hacklemeye veya aksatmaya çalışma",
+                    "Başkalarına yönelik hizmeti bozacak şekilde otomatik komut dosyaları veya botlar kullanma",
+                    "Herhangi bir güvenlik önlemini veya erişim kısıtlamasını aşma",
+                    "Hizmeti herhangi bir yasadışı amaç için kullanma"
+                ]
+            },
+            "intellectual": {
+                "title": "Fikri Mülkiyet",
+                "content": "PdfLove uygulaması, tasarımı, kodu ve içeriği (kullanıcı dosyaları hariç) PdfLove'ın fikri mülkiyetidir. Tüm haklar saklıdır. Açık kaynaklı bileşenlerimiz kendi lisansları kapsamındadır."
+            },
+            "disclaimer": {
+                "title": "Garanti Reddi",
+                "content": "PdfLove, herhangi bir garanti olmaksızın \"olduğu gibi\" sağlanmaktadır. Kesintisiz veya hatasız hizmet garanti etmiyoruz. Hizmetin kullanımı tamamen kendi riskinizde olup sorumluluğunuzdadır."
+            },
+            "liability": {
+                "title": "Sorumluluğun Sınırlandırılması",
+                "content": "Yasaların izin verdiği azami ölçüde, PdfLove; hizmeti kullanımınızdan veya kullanamamanızdan kaynaklanan dolaylı, arızi, özel, sonuçsal veya cezai zararlardan sorumlu tutulamaz."
+            },
+            "changes": {
+                "title": "Koşullardaki Değişiklikler",
+                "content": "Bu koşulları istediğimiz zaman değiştirme hakkını saklı tutarız. Önemli değişiklikleri \"Son güncelleme\" tarihini güncelleyerek bildiririz. Değişikliklerden sonra hizmeti kullanmaya devam etmeniz bu değişiklikleri kabul ettiğiniz anlamına gelir."
+            },
+            "contact": {
+                "title": "İletişim",
+                "content": "Kullanım Koşulları hakkında sorularınız mı var? contact@pdflove.app adresinden bize ulaşın."
+            }
+        },
+        "cookies": {
+            "title": "Çerez Politikası",
+            "lastUpdated": "Son güncelleme: Aralık 2024",
+            "introduction": {
+                "content": "Bu Çerez Politikası, çerezlerin ve benzer teknolojilerin ne olduğunu, PdfLove'ın bunları nasıl kullandığını ve kullanımları konusundaki seçeneklerinizi açıklamaktadır."
+            },
+            "content": "PdfLove, kullanıcı deneyimini iyileştirmek için yalnızca gerekli teknik çerezleri kullanır.",
+            "whatAreCookies": {
+                "title": "Çerezler Nedir?",
+                "content": "Çerezler, bir web sitesini ziyaret ettiğinizde cihazınızda saklanan küçük metin dosyalarıdır. Web sitelerinin ziyaretinizle ilgili bilgileri hatırlamasına yardımcı olarak bir sonraki ziyaretinizi daha kolay ve kullanışlı hale getirirler."
+            },
+            "howWeUse": {
+                "title": "Çerezleri Nasıl Kullanıyoruz",
+                "content": "Teknik olarak zorunlu olan veya deneyiminizi iyileştiren minimum sayıda çerez kullanıyoruz:"
+            },
+            "types": [
+                {
+                    "name": "Zorunlu Çerezler",
+                    "purpose": "Web sitesinin düzgün çalışması için gereklidir",
+                    "examples": "Oturum yönetimi, güvenlik token'ları",
+                    "duration": "Oturum",
+                    "canDisable": false
+                },
+                {
+                    "name": "Tercih Çerezleri",
+                    "purpose": "Dil ve tema tercihlerinizi hatırlar",
+                    "examples": "Dil seçimi, koyu/açık mod",
+                    "duration": "1 yıl",
+                    "canDisable": true
+                },
+                {
+                    "name": "Analitik Çerezler",
+                    "purpose": "Ziyaretçilerin sitemizi nasıl kullandığını anlamamıza yardımcı olur (anonimleştirilmiş)",
+                    "examples": "Sayfa görüntülemeleri, araç kullanım istatistikleri",
+                    "duration": "Oturum",
+                    "canDisable": true
+                }
+            ],
+            "noTracking": {
+                "title": "Kullanmadıklarımız",
+                "points": [
+                    "Reklam veya hedefleme çerezleri",
+                    "Üçüncü taraf sosyal medya izleme pikselleri",
+                    "Siteler arası izleme teknolojileri",
+                    "Kişisel olarak tanımlanabilir bilgi toplayan çerezler"
+                ]
+            },
+            "control": {
+                "title": "Çerez Seçenekleriniz",
+                "content": "Çerezleri tarayıcı ayarlarınız aracılığıyla kontrol edebilirsiniz. Çoğu tarayıcı, çerezleri reddetmenize, mevcut çerezleri silmenize veya bir çerez ayarlandığında size bildirim gönderilmesine olanak tanır. Belirli çerezlerin devre dışı bırakılması web sitesi işlevselliğini etkileyebilir."
+            },
+            "contact": {
+                "title": "Sorularınız mı var?",
+                "content": "Çerez uygulamalarımız hakkında sorularınız için contact@pdflove.app adresine ulaşabilirsiniz."
+            }
         }
     }
 }

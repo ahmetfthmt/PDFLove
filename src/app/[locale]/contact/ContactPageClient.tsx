@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { Mail, MessageSquare, Github, Twitter, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { type Locale } from '@/lib/i18n/config';
+import { encodeArray } from '@/lib/toon';
 
 interface ContactPageClientProps {
   locale: Locale;
@@ -16,40 +17,34 @@ interface ContactPageClientProps {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+// TOON formatında saklamak için form veri tipi
+interface ContactFormRecord extends Record<string, unknown> {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  timestamp: string;
+  locale: string;
+}
+
 export default function ContactPageClient({ locale }: ContactPageClientProps) {
   const t = useTranslations('contactPage');
   const tCommon = useTranslations('common');
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
-
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: t('methods.email.title'),
-      description: t('methods.email.description'),
-      action: t('methods.email.action'),
-      href: 'mailto:contact@pdflove.app',
-    },
-    {
-      icon: Github,
-      title: t('methods.github.title'),
-      description: t('methods.github.description'),
-      action: t('methods.github.action'),
-      href: 'https://github.com/PdfLoveTool/PdfLove',
-    },
-    {
-      icon: Twitter,
-      title: t('methods.twitter.title'),
-      description: t('methods.twitter.description'),
-      action: t('methods.twitter.action'),
-      href: 'https://x.com/PdfLoveTool',
-    },
-  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -60,12 +55,45 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
     e.preventDefault();
     setFormStatus('submitting');
 
-    // Simulate form submission (in a real app, this would send to an API)
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Form verilerini TOON formatında sakla
+      const formRecord: ContactFormRecord = {
+        id: Date.now(),
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        timestamp: new Date().toISOString(),
+        locale: locale,
+      };
 
-    // For demo purposes, always succeed
-    setFormStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+      // Mevcut kayıtları al
+      const storedData = localStorage.getItem('pdfcraft_contact_forms');
+      let records: ContactFormRecord[] = [];
+      
+      if (storedData) {
+        try {
+          records = JSON.parse(storedData);
+        } catch {
+          records = [];
+        }
+      }
+
+      // Yeni kaydı ekle
+      records.push(formRecord);
+
+      // TOON formatına çevir ve sakla (daha az yer kaplar)
+      const toonEncoded = encodeArray(records, 'contactForms');
+      localStorage.setItem('pdfcraft_contact_forms', toonEncoded.output);
+
+      // Simulate form submission delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setFormStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -87,43 +115,8 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
           </div>
         </section>
 
-        {/* Contact Methods */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {contactMethods.map((method, index) => {
-                const Icon = method.icon;
-                return (
-                  <a
-                    key={index}
-                    href={method.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <Card className="p-6 h-full text-center" hover>
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[hsl(var(--color-primary)/0.1)] mb-4">
-                        <Icon className="h-6 w-6 text-[hsl(var(--color-primary))]" />
-                      </div>
-                      <h3 className="font-semibold text-[hsl(var(--color-foreground))] mb-2">
-                        {method.title}
-                      </h3>
-                      <p className="text-sm text-[hsl(var(--color-muted-foreground))] mb-4">
-                        {method.description}
-                      </p>
-                      <span className="text-sm font-medium text-[hsl(var(--color-primary))]">
-                        {method.action}
-                      </span>
-                    </Card>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
         {/* Contact Form */}
-        <section className="py-12 bg-[hsl(var(--color-muted)/0.3)]">
+        <section className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-8">
@@ -168,7 +161,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))]"
+                          className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] text-[hsl(var(--color-foreground))]"
                           placeholder={t('form.fields.name.placeholder')}
                         />
                       </div>
@@ -186,7 +179,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))]"
+                          className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] text-[hsl(var(--color-foreground))]"
                           placeholder={t('form.fields.email.placeholder')}
                         />
                       </div>
@@ -205,7 +198,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))]"
+                        className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] text-[hsl(var(--color-foreground))]"
                       >
                         <option value="">{t('form.fields.subject.placeholder')}</option>
                         <option value="general">{t('form.fields.subject.options.general')}</option>
@@ -230,7 +223,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] resize-none"
+                        className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))] resize-none text-[hsl(var(--color-foreground))]"
                         placeholder={t('form.fields.message.placeholder')}
                       />
                     </div>
@@ -262,7 +255,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
         </section>
 
         {/* FAQ Link */}
-        <section className="py-12">
+        <section className="py-12 bg-[hsl(var(--color-muted)/0.3)]">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <MessageSquare className="h-12 w-12 mx-auto mb-4 text-[hsl(var(--color-muted-foreground))]" />

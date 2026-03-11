@@ -65,22 +65,14 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             </p>
 
             <div className="flex gap-4">
-              <a href="https://github.com/PdfLoveTool/PdfLove" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
-                <Github className="w-4 h-4" />
-              </a>
-              <a href="https://x.com/PdfLoveTool" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="#" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
-                <Mail className="w-4 h-4" />
-              </a>
+              {/* Social links removed for cleaner look */}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
-              Resources
+              {t('footer.sections.resources')}
             </h3>
             <ul className="flex flex-col gap-3">
               {footerLinks.map((link) => (
@@ -100,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           {/* Security Features */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
-              Security
+              {t('footer.sections.security')}
             </h3>
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3">
@@ -108,8 +100,8 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                   <Lock className="h-3 w-3" />
                 </div>
                 <div>
-                  <span className="block text-sm font-medium text-[hsl(var(--color-foreground))]">Client-side processing</span>
-                  <span className="text-xs text-[hsl(var(--color-muted-foreground))]">Files never leave your device</span>
+                  <span className="block text-sm font-medium text-[hsl(var(--color-foreground))]">{t('footer.securityFeatures.clientSide.title')}</span>
+                  <span className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.securityFeatures.clientSide.description')}</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -117,8 +109,8 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                   <FileCheck className="h-3 w-3" />
                 </div>
                 <div>
-                  <span className="block text-sm font-medium text-[hsl(var(--color-foreground))]">No file uploads</span>
-                  <span className="text-xs text-[hsl(var(--color-muted-foreground))]">100% private & secure</span>
+                  <span className="block text-sm font-medium text-[hsl(var(--color-foreground))]">{t('footer.securityFeatures.noUploads.title')}</span>
+                  <span className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.securityFeatures.noUploads.description')}</span>
                 </div>
               </li>
             </ul>
@@ -127,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           {/* Privacy Badge Block */}
           <div className="flex flex-col justify-start">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[hsl(var(--color-foreground))] mb-6">
-              Compliance
+              {t('footer.sections.compliance')}
             </h3>
             <div
               className="flex items-center gap-3 p-4 bg-[hsl(var(--color-card))] border border-[hsl(var(--color-border))] rounded-xl shadow-sm"
@@ -136,42 +128,10 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                 <Shield className="h-5 w-5 text-[hsl(var(--color-success))]" aria-hidden="true" />
               </div>
               <div>
-                <div className="text-sm font-bold text-[hsl(var(--color-foreground))]">GDPR Compliant</div>
-                <div className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.privacyBadge')}</div>
+                <div className="text-sm font-bold text-[hsl(var(--color-foreground))]">{t('footer.complianceFeatures.gdpr.title')}</div>
+                <div className="text-xs text-[hsl(var(--color-muted-foreground))]">{t('footer.complianceFeatures.gdpr.description')}</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Language Switcher */}
-        <div className="py-6 border-t border-[hsl(var(--color-border))]">
-          <div className="flex items-center gap-3 mb-4">
-            <Globe className="h-4 w-4 text-[hsl(var(--color-muted-foreground))]" />
-            <span className="text-sm font-medium text-[hsl(var(--color-foreground))]">
-              {t('buttons.selectLanguage')}
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {locales.map((loc) => {
-              const config = localeConfig[loc];
-              const isActive = loc === locale;
-              return (
-                <button
-                  key={loc}
-                  onClick={() => handleLanguageChange(loc)}
-                  className={`
-                    px-3 py-1.5 text-sm rounded-full transition-all
-                    ${isActive
-                      ? 'bg-[hsl(var(--color-primary))] text-white font-medium'
-                      : 'bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary)/0.1)] hover:text-[hsl(var(--color-primary))]'
-                    }
-                  `}
-                  aria-current={isActive ? 'true' : undefined}
-                >
-                  {config.nativeName}
-                </button>
-              );
-            })}
           </div>
         </div>
 
@@ -181,9 +141,9 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             &copy; {currentYear} {t('brand')}. {t('footer.copyright', { year: '' }).replace(/^\d{4}\s*/, '')}
           </p>
           <div className="flex items-center gap-6">
-            <Link href={`/${locale}/terms`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Terms</Link>
-            <Link href={`/${locale}/privacy`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Privacy</Link>
-            <Link href={`/${locale}/cookies`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">Cookies</Link>
+            <Link href={`/${locale}/terms`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">{t('footer.links.terms')}</Link>
+            <Link href={`/${locale}/privacy`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">{t('footer.links.privacy')}</Link>
+            <Link href={`/${locale}/cookies`} className="text-xs text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))]">{t('footer.links.cookies')}</Link>
           </div>
         </div>
       </div>

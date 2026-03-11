@@ -69,4 +69,9 @@ comparisons.txt
 public/libreoffice-wasm/soffice.wasm
 public/libreoffice-wasm/soffice.data
 
+# Test çıktıları / loglar
+test_output.txt
+test_error.log
+test_results.json
+vitest.out
 

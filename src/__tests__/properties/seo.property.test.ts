@@ -124,9 +124,9 @@ describe('SEO Property Tests', () => {
             expect(metadata.openGraph?.title).toBeTruthy();
             expect(metadata.openGraph?.description).toBeTruthy();
             expect(metadata.twitter).toBeDefined();
-            expect(metadata.twitter?.card).toBeTruthy();
-            expect(metadata.twitter?.title).toBeTruthy();
-            expect(metadata.twitter?.description).toBeTruthy();
+            expect((metadata.twitter as any)?.card).toBeTruthy();
+            expect((metadata.twitter as any)?.title).toBeTruthy();
+            expect((metadata.twitter as any)?.description).toBeTruthy();
             
             return true;
           }

@@ -7,7 +7,7 @@ import { type Locale, defaultLocale } from './config';
 
 // Type for nested translation messages
 export type NestedMessages = {
-  [key: string]: string | NestedMessages;
+  [key: string]: string | NestedMessages | string[];
 };
 
 // Cache for loaded messages
@@ -47,18 +47,18 @@ export async function loadEnglishMessages(): Promise<NestedMessages> {
 export function getNestedValue(
   obj: NestedMessages,
   path: string
-): string | undefined {
+): string | string[] | undefined {
   const keys = path.split('.');
-  let current: NestedMessages | string | undefined = obj;
+  let current: NestedMessages | string | string[] | undefined = obj;
 
   for (const key of keys) {
-    if (current === undefined || typeof current === 'string') {
+    if (current === undefined || typeof current === 'string' || Array.isArray(current)) {
       return undefined;
     }
     current = current[key];
   }
 
-  return typeof current === 'string' ? current : undefined;
+  return typeof current === 'string' || Array.isArray(current) ? current : undefined;
 }
 
 /**
@@ -69,7 +69,7 @@ export function getTranslationWithFallback(
   messages: NestedMessages,
   englishMessages: NestedMessages,
   key: string
-): string {
+): string | string[] {
   // Try to get the translation from the target locale
   const translation = getNestedValue(messages, key);
   
@@ -104,6 +104,9 @@ export function mergeWithFallback(
       const value = source[key];
       if (typeof value === 'string') {
         target[key] = value;
+      } else if (Array.isArray(value)) {
+        // Handle arrays - copy them directly
+        target[key] = [...value];
       } else {
         target[key] = {};
         deepCopy(value, target[key] as NestedMessages);
@@ -119,7 +122,10 @@ export function mergeWithFallback(
       const value = source[key];
       if (typeof value === 'string') {
         target[key] = value;
-      } else if (typeof target[key] === 'object' && target[key] !== null) {
+      } else if (Array.isArray(value)) {
+        // Handle arrays - replace entirely with locale version
+        target[key] = [...value];
+      } else if (typeof target[key] === 'object' && target[key] !== null && !Array.isArray(target[key])) {
         deepMerge(value, target[key] as NestedMessages);
       } else {
         target[key] = {};
@@ -139,18 +145,25 @@ export function mergeWithFallback(
 export function createTranslator(
   messages: NestedMessages,
   englishMessages: NestedMessages
-): (key: string, params?: Record<string, string | number>) => string {
-  return (key: string, params?: Record<string, string | number>): string => {
-    let translation = getTranslationWithFallback(messages, englishMessages, key);
+): (key: string, params?: Record<string, string | number>) => string | string[] {
+  return (key: string, params?: Record<string, string | number>): string | string[] => {
+    const translation = getTranslationWithFallback(messages, englishMessages, key);
+
+    // If it's an array, return as-is (no parameter replacement for arrays)
+    if (Array.isArray(translation)) {
+      return translation;
+    }
 
     // Replace parameters in the translation
-    if (params) {
+    if (params && typeof translation === 'string') {
+      let result = translation;
       for (const [paramKey, paramValue] of Object.entries(params)) {
-        translation = translation.replace(
+        result = result.replace(
           new RegExp(`\\{${paramKey}\\}`, 'g'),
           String(paramValue)
         );
       }
+      return result;
     }
 
     return translation;
@@ -191,10 +204,15 @@ export function getMissingKeys(
         if (targetValue === undefined) {
           missingKeys.push(fullKey);
         }
+      } else if (Array.isArray(englishValue)) {
+        // Arrays don't need recursive checking
+        if (targetValue === undefined) {
+          missingKeys.push(fullKey);
+        }
       } else {
         checkKeys(
           englishValue,
-          (targetValue as NestedMessages) || {},
+          (typeof targetValue === 'object' && !Array.isArray(targetValue) ? targetValue : {}) as NestedMessages,
           fullKey
         );
       }

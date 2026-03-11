@@ -652,3 +652,27 @@ export {
   pdfToMarkdown,
   type PDFToMarkdownOptions,
 } from './pdf-to-markdown';
+
+// Advanced PDF Editor processor
+export {
+  PDFEditorProcessor,
+  createPDFEditorProcessor,
+  editPDF,
+  performOCR,
+  FONT_FAMILY_NAMES,
+  FONT_SIZES,
+  STANDARD_COLORS,
+  type PDFFontFamily,
+  type PDFFontWeight,
+  type PDFFontStyle,
+  type TextAlignment,
+  type ShapeType,
+  type EditorElementType,
+  type EditorElement,
+  type TextElement,
+  type ImageElement,
+  type ShapeElement,
+  type OCRTextBlock,
+  type OCRResult,
+  type PDFEditorOptions,
+} from './pdf-editor';

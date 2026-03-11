@@ -31,7 +31,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   // This ensures all keys are available, falling back to English for missing ones
   const messages = locale === 'en' 
     ? englishMessages 
-    : mergeWithFallback(localeMessages, englishMessages);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    : mergeWithFallback(localeMessages as any, englishMessages as any);
 
   return {
     locale,

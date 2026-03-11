@@ -13,6 +13,8 @@ export {
   generateAboutMetadata,
   generateFaqMetadata,
   generatePrivacyMetadata,
+  generateTermsMetadata,
+  generateCookiesMetadata,
   generateContactMetadata,
   getCanonicalUrl,
   getAlternateUrls,

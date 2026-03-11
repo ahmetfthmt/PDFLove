@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { locales, defaultLocale } from '@/lib/i18n/config';
+import { defaultLocale } from '@/lib/i18n/config';
 
 // Root page handles client-side redirection based on browser language
 export default function RootPage() {
@@ -10,18 +10,11 @@ export default function RootPage() {
 
   useEffect(() => {
     try {
-      // Get browser language
-      const browserLang = navigator.language;
-      const primaryLang = browserLang.split('-')[0];
-
-      // Check if the language is supported
-      if ((locales as readonly string[]).includes(primaryLang)) {
-        router.replace(`/${primaryLang}`);
-      } else {
-        router.replace(`/${defaultLocale}`);
-      }
-    } catch (error) {
-      // Fallback to default locale if anything goes wrong
+      const browserLang = navigator.language.split('-')[0].toLowerCase();
+      // Only redirect to Turkish if the system language is Turkish, otherwise use English
+      const locale = browserLang === 'tr' ? 'tr' : defaultLocale;
+      router.replace(`/${locale}`);
+    } catch {
       router.replace(`/${defaultLocale}`);
     }
   }, [router]);

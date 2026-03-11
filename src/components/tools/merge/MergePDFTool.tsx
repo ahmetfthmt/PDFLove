@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { mergePDFs } from '@/lib/pdf';
 import type { MergeOptions, UploadedFile, ProcessOutput } from '@/types/pdf';
+import { useFileStore } from '@/lib/storage/file-store';
 
 /**
  * Generate a unique ID for files
@@ -31,20 +32,22 @@ export interface MergePDFToolProps {
 export function MergePDFTool({ className = '' }: MergePDFToolProps) {
   const t = useTranslations('common');
   const tTools = useTranslations('tools');
-  
-  // State
-  const [files, setFiles] = useState<UploadedFile[]>([]);
+
+  // State from global store
+  const { files, setFiles, addFiles, removeFile, clearFiles } = useFileStore();
+
+  // Local state
   const [status, setStatus] = useState<ProcessingStatus>('idle');
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState('');
   const [result, setResult] = useState<Blob | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [preserveBookmarks, setPreserveBookmarks] = useState(true);
-  
+
   // Drag state
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  
+
   // Ref for cancellation
   const cancelledRef = useRef(false);
 
@@ -57,11 +60,11 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
       file,
       status: 'pending' as const,
     }));
-    
-    setFiles(prev => [...prev, ...uploadedFiles]);
+
+    addFiles(uploadedFiles);
     setError(null);
     setResult(null);
-  }, []);
+  }, [addFiles]);
 
   /**
    * Handle file upload error
@@ -74,20 +77,20 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
    * Remove a file from the list
    */
   const handleRemoveFile = useCallback((id: string) => {
-    setFiles(prev => prev.filter(f => f.id !== id));
+    removeFile(id);
     setResult(null);
-  }, []);
+  }, [removeFile]);
 
   /**
    * Clear all files
    */
   const handleClearAll = useCallback(() => {
-    setFiles([]);
+    clearFiles();
     setResult(null);
     setError(null);
     setStatus('idle');
     setProgress(0);
-  }, []);
+  }, [clearFiles]);
 
   /**
    * Handle drag start
@@ -111,40 +114,34 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
    */
   const handleDragEnd = useCallback(() => {
     if (draggedIndex !== null && dragOverIndex !== null && draggedIndex !== dragOverIndex) {
-      setFiles(prev => {
-        const newFiles = [...prev];
-        const [draggedFile] = newFiles.splice(draggedIndex, 1);
-        newFiles.splice(dragOverIndex, 0, draggedFile);
-        return newFiles;
-      });
+      const newFiles = [...files];
+      const [draggedFile] = newFiles.splice(draggedIndex, 1);
+      newFiles.splice(dragOverIndex, 0, draggedFile);
+      setFiles(newFiles);
     }
     setDraggedIndex(null);
     setDragOverIndex(null);
-  }, [draggedIndex, dragOverIndex]);
+  }, [draggedIndex, dragOverIndex, files, setFiles]);
 
   /**
    * Move file up in the list
    */
   const handleMoveUp = useCallback((index: number) => {
     if (index === 0) return;
-    setFiles(prev => {
-      const newFiles = [...prev];
-      [newFiles[index - 1], newFiles[index]] = [newFiles[index], newFiles[index - 1]];
-      return newFiles;
-    });
-  }, []);
+    const newFiles = [...files];
+    [newFiles[index - 1], newFiles[index]] = [newFiles[index], newFiles[index - 1]];
+    setFiles(newFiles);
+  }, [files, setFiles]);
 
   /**
    * Move file down in the list
    */
   const handleMoveDown = useCallback((index: number) => {
-    setFiles(prev => {
-      if (index === prev.length - 1) return prev;
-      const newFiles = [...prev];
-      [newFiles[index], newFiles[index + 1]] = [newFiles[index + 1], newFiles[index]];
-      return newFiles;
-    });
-  }, []);
+    if (index === files.length - 1) return;
+    const newFiles = [...files];
+    [newFiles[index], newFiles[index + 1]] = [newFiles[index + 1], newFiles[index]];
+    setFiles(newFiles);
+  }, [files, setFiles]);
 
   /**
    * Handle merge operation
@@ -235,7 +232,7 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
 
       {/* Error Message */}
       {error && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-red-50 border border-red-200 text-red-700"
           role="alert"
         >
@@ -281,7 +278,7 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
                 `}
               >
                 {/* Drag Handle */}
-                <div 
+                <div
                   className="flex-shrink-0 text-[hsl(var(--color-muted-foreground))]"
                   aria-hidden="true"
                 >
@@ -369,7 +366,7 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
           <h3 className="text-lg font-medium text-[hsl(var(--color-foreground))] mb-4">
             {tTools('mergePdf.optionsTitle') || 'Merge Options'}
           </h3>
-          
+
           <label className="flex items-center gap-3 cursor-pointer">
             <input
               type="checkbox"
@@ -407,8 +404,8 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
           disabled={!canMerge}
           loading={isProcessing}
         >
-          {isProcessing 
-            ? (t('status.processing') || 'Processing...') 
+          {isProcessing
+            ? (t('status.processing') || 'Processing...')
             : (tTools('mergePdf.mergeButton') || 'Merge PDFs')
           }
         </Button>
@@ -426,7 +423,7 @@ export function MergePDFTool({ className = '' }: MergePDFToolProps) {
 
       {/* Success Message */}
       {status === 'complete' && result && (
-        <div 
+        <div
           className="p-4 rounded-[var(--radius-md)] bg-green-50 border border-green-200 text-green-700"
           role="status"
         >
