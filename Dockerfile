@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
-RUN npm ci --prefer-offline
+RUN npm install --no-audit --no-fund
 
 # Copy the rest of the source
 COPY . .
