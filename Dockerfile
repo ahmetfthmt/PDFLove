@@ -12,14 +12,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
-RUN npm install --no-audit --no-fund
+# --ignore-scripts skips postinstall hooks (e.g. LibreOffice binary downloads)
+RUN npm install --no-audit --no-fund --ignore-scripts
+
+# Copy source and manually run only the pdfjs worker sync script
+COPY scripts/ ./scripts/
 
 # Copy the rest of the source
 COPY . .
 
+# Run only the pdfjs worker sync (skipped by --ignore-scripts above)
+RUN node scripts/sync-pdfjs-workers.js
+
 # Build the Next.js static export
 ENV NODE_ENV=production
-RUN npm run build
+RUN npm run build --no-audit
 
 # =============================================================================
 # Stage 2: Serve with nginx
